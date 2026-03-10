@@ -99,6 +99,11 @@
       backdrop-filter: blur(100px);
       background: rgba(10, 10, 10, 0.85);
     }
+
+    .header-blur-active {
+      backdrop-filter: blur(6px);
+      background: rgba(10, 10, 10, 0.5);
+    }
   </style>
   <style data-purpose="typography">
     .text-balance {
@@ -117,7 +122,8 @@
 
 <body class="text-white font-sans selection:bg-brand-accent selection:text-white">
   <!-- BEGIN: Navigation -->
-  <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center pointer-events-none">
+  <header
+    class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center pointer-events-none transition-colors duration-300">
     <div class="pointer-events-auto">
       <div class="text-brand-accent font-bold text-xl tracking-tighter">mainthread</div>
     </div>
@@ -226,6 +232,23 @@
     <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-brand-accent opacity-5 blur-[120px] rounded-full"></div>
   </div>
   <!-- END: Decorative Background Elements -->
+  <script>
+    (function () {
+      const header = document.querySelector('header');
+      if (!header) return;
+
+      const toggleHeaderBlur = () => {
+        if (window.scrollY > 0) {
+          header.classList.add('header-blur-active');
+        } else {
+          header.classList.remove('header-blur-active');
+        }
+      };
+
+      toggleHeaderBlur();
+      window.addEventListener('scroll', toggleHeaderBlur, { passive: true });
+    })();
+  </script>
 </body>
 
 </html>
