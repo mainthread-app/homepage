@@ -5,7 +5,47 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
   <title>Mainthread</title>
+  <meta name="description"
+    content="Mainthread is a personal productivity system that unifies your work, family, and household into one priority-driven shortlist so you always know what to do next." />
+
+  <!-- Primary SEO -->
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://mainthread.app/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mainthread.app/" />
+  <meta property="og:title" content="Mainthread" />
+  <meta property="og:description"
+    content="A unified productivity system built around swimlanes, threads, and tasks, powered by a daily priority engine so nothing slips through the cracks." />
+  <meta property="og:site_name" content="Mainthread" />
+  <!-- Replace URL if social card moves -->
+  <meta property="og:image" content="https://mainthread.app/img/social-card.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mainthread" />
+  <meta name="twitter:description"
+    content="A unified productivity system that scores every task across your life to produce a clear daily shortlist." />
+  <meta name="twitter:image" content="https://mainthread.app/img/social-card.png" />
+
+  <!-- Icons & Theme -->
+  <link rel="icon" href="img/favicon.ico" sizes="256x256" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="img/icon_x180.png" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Mainthread",
+      "url": "https://mainthread.app/",
+      "description": "A personal productivity platform that unifies all areas of your life with a priority engine and daily shortlist."
+    }
+  </script>
   <!-- Tailwind CSS v3 CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <!-- Google Fonts: Serif for body, Sans for UI -->
@@ -48,6 +88,11 @@
       backdrop-filter: blur(100px);
       background: rgba(10, 10, 10, 0.85);
     }
+
+    .header-blur-active {
+      backdrop-filter: blur(6px);
+      background: rgba(10, 10, 10, 0.5);
+    }
   </style>
   <style data-purpose="typography">
     .text-balance {
@@ -66,21 +111,22 @@
 
 <body class="text-white font-sans selection:bg-brand-accent selection:text-white">
   <!-- BEGIN: Navigation -->
-  <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center pointer-events-none">
+  <header
+    class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center pointer-events-none transition-colors duration-300">
     <div class="pointer-events-auto">
       <div class="text-brand-accent font-bold text-xl tracking-tighter">mainthread</div>
-    </div>
-    <div class="pointer-events-auto">
-      <!-- Top right CTA button based on image context -->
-      <button
-        class="bg-[#1a1a1a] hover:bg-[#252525] transition-colors border border-brand-border px-5 py-2.5 rounded-full text-sm font-medium tracking-wide">
-        so, what's mainthread?
-      </button>
     </div>
   </header>
   <!-- END: Navigation -->
   <!-- BEGIN: Main Content Container -->
   <main class="relative min-h-screen flex flex-col items-center pt-32 pb-24 px-6 md:px-12">
+    <div class="mt-3 mb-12 w-full flex justify-end">
+      <!-- Top right CTA button based on image context -->
+      <div
+        class="bg-[#1a1a1a] hover:bg-[#252525] transition-colors border border-brand-border px-5 py-2.5 rounded-full text-sm font-medium tracking-wide">
+        so, what's mainthread?
+      </div>
+    </div>
     <!-- Content Card -->
     <article
       class="max-w-3xl w-full content-blur-backdrop border border-brand-border rounded-2xl p-8 md:p-12 shadow-2xl"
@@ -163,7 +209,7 @@
       <!-- END: Vision & Tagline -->
       <!-- BEGIN: Footer Actions -->
       <footer class="mt-16 flex items-center justify-start gap-6 pt-6 border-t border-brand-border">
-       
+
       </footer>
       <!-- END: Footer Actions -->
     </article>
@@ -175,6 +221,23 @@
     <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-brand-accent opacity-5 blur-[120px] rounded-full"></div>
   </div>
   <!-- END: Decorative Background Elements -->
+  <script>
+      (function () {
+        const header = document.querySelector('header');
+        if (!header) return;
+
+        const toggleHeaderBlur = () => {
+          if (window.scrollY > 0) {
+            header.classList.add('header-blur-active');
+          } else {
+            header.classList.remove('header-blur-active');
+          }
+        };
+
+        toggleHeaderBlur();
+        window.addEventListener('scroll', toggleHeaderBlur, { passive: true });
+      })();
+  </script>
 </body>
 
 </html>
