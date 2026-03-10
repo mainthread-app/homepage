@@ -47,7 +47,7 @@
     }
   </script>
   <!-- Tailwind CSS v3 CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Serif for body, Sans for UI -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -208,12 +208,21 @@
       </section>
       <!-- END: Vision & Tagline -->
       <!-- BEGIN: Footer Actions -->
-      <footer class="mt-16 flex items-center justify-start gap-6 pt-6 border-t border-brand-border">
-
-      </footer>
+      
       <!-- END: Footer Actions -->
     </article>
   </main>
+  <footer class="flex items-center justify-center gap-6 m-2">
+    <div class="text-sm text-brand-muted">
+      © <span id="footer-year"></span> Mainthread
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="https://www.linkedin.com/company/mainthread" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm text-brand-muted hover:text-white transition-colors">
+        <span class="hidden sm:inline">LinkedIn</span>
+      </a>
+    </div>
+  </footer>
   <!-- END: Main Content Container -->
   <!-- BEGIN: Decorative Background Elements -->
   <div aria-hidden="true" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
