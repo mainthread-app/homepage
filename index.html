@@ -116,6 +116,12 @@
     <div class="pointer-events-auto">
       <div class="text-brand-accent font-bold text-xl tracking-tighter">mainthread</div>
     </div>
+    <div class="pointer-events-auto">
+      <a id="login-link" href="https://run.mainthread.app"
+        class="text-sm font-medium text-brand-muted hover:text-white transition-colors hover:underline underline-offset-4">
+        Log in
+      </a>
+    </div>
   </header>
   <!-- END: Navigation -->
   <!-- BEGIN: Main Content Container -->
@@ -179,34 +185,33 @@
       <section class="space-y-8 mb-12 border-t border-brand-border pt-10">
         <p class="font-serif text-lg leading-relaxed-serif text-gray-300">
           What makes it different from a typical todo app is the <span
-            class="text-white font-semibold underline decoration-brand-accent underline-offset-4">priority
-            engine</span>. Instead of you manually deciding what to work on, mainthread scores every task daily based on
-          six factors: time pressure, consequence of missing it, who's affected, how important the thread is, your own
-          judgment (the "important" flag), and dependency order. Tasks bubble up automatically as deadlines approach.
+          class="text-white font-semibold underline decoration-brand-accent underline-offset-4">priority engine</span>. 
+          Instead of you deciding what to work on, Mainthread scores every task daily across six factors: time pressure, the consequence of missing it, who's affected, how important the thread is, your own judgment, and what's blocking what. The most important things rise to the top automatically.
         </p>
-        <p class="font-serif text-lg leading-relaxed-serif text-gray-300">
-          The end goal is a <span class="text-white font-semibold">daily shortlist</span> — a capacity-aware view that
-          tells you exactly what to work on today across all areas of your life, so nothing slips through the cracks
-          whether it's a work deliverable or a bill you need to pay.
-        </p>
+
       </section>
       <!-- END: Priority Engine & Shortlist -->
-      <!-- BEGIN: Vision & Tagline -->
-      <section class="space-y-8 border-t border-brand-border pt-10">
-        <div class="bg-brand-accent/5 border border-brand-accent/20 rounded-xl p-6">
+      <!-- BEGIN: Vision — AI agents -->
+      <section class="bg-brand-accent/5 border border-brand-accent/20 rounded-xl p-6">
+        <div class="">
           <p class="font-serif text-lg leading-relaxed-serif text-gray-300">
-            Phase 2 of the vision takes it further: rather than just <span class="italic">managing</span> tasks
-            yourself, you'd delegate them to <span class="text-brand-accent font-medium">AI agents</span> — turning
-            mainthread into a personal delegation layer.
-          </p>
-        </div>
-        <div class="pt-4 text-center">
-          <p class="font-sans font-bold text-2xl md:text-3xl tracking-tight text-white uppercase italic">
-            "One Life, One System."
+            Tasks that need to get done but don't need you to do them — booking appointments, recurring admin, anything operational — Mainthread's <span class="text-brand-accent font-medium">AI agents</span> take them off your plate entirely. You stay focused on what adds real value. Everything else gets handled.
           </p>
         </div>
       </section>
-      <!-- END: Vision & Tagline -->
+      <!-- END: Vision — AI agents -->
+      <section class="space-y-8 mb-12 border-t border-brand-border pt-10">
+        <p class="font-serif text-lg leading-relaxed-serif text-gray-300">
+          The end goal is simple: you wake up and you know exactly what to work on today. Not because you spent your morning triaging tasks across five different tools, but because Mainthread has already done that thinking for you — weighing deadlines, your capacity, and what actually matters across every area of your life. <br/> Less anxiety. More output.
+        </p>
+      </section>
+      <!-- BEGIN: Tagline -->
+      <section class="border-t border-brand-border pt-10 text-center">
+        <p class="font-sans font-bold text-2xl md:text-3xl tracking-tight text-white uppercase italic">
+          "One Life, One System."
+        </p>
+      </section>
+      <!-- END: Tagline -->
       <!-- BEGIN: Footer Actions -->
       
       <!-- END: Footer Actions -->
@@ -231,6 +236,14 @@
   </div>
   <!-- END: Decorative Background Elements -->
   <script>
+      (function () {
+        const loginLink = document.getElementById('login-link');
+        if (loginLink) {
+          const url = new URL('https://run.mainthread.app');
+          url.searchParams.set('referrer', 'website');
+          loginLink.href = url.toString();
+        }
+      })();
       (function () {
         const header = document.querySelector('header');
         if (!header) return;
