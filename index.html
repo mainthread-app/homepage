@@ -1,264 +1,1924 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mainthread</title>
   <meta name="description"
-    content="Mainthread is a personal productivity system that unifies your work, family, and household into one priority-driven shortlist so you always know what to do next." />
+    content="Mainthread is a personal productivity system that unifies your work, family, and household into one priority-driven shortlist so you always know what to do next.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://mainthread.app/">
 
-  <!-- Primary SEO -->
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://mainthread.app/" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://mainthread.app/" />
-  <meta property="og:title" content="Mainthread" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mainthread.app/">
+  <meta property="og:title" content="Mainthread">
   <meta property="og:description"
-    content="A unified productivity system built around swimlanes, threads, and tasks, powered by a daily priority engine so nothing slips through the cracks." />
-  <meta property="og:site_name" content="Mainthread" />
-  <!-- Replace URL if social card moves -->
-  <meta property="og:image" content="https://mainthread.app/img/social-card.png" />
+    content="A unified productivity system built around swimlanes, threads, and tasks, powered by a daily priority engine so nothing slips through the cracks.">
+  <meta property="og:image" content="https://mainthread.app/img/social-card.png">
+  <meta property="og:site_name" content="Mainthread">
 
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mainthread" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mainthread">
   <meta name="twitter:description"
-    content="A unified productivity system that scores every task across your life to produce a clear daily shortlist." />
-  <meta name="twitter:image" content="https://mainthread.app/img/social-card.png" />
+    content="A unified productivity system that scores every task across your life to produce a clear daily shortlist.">
+  <meta name="twitter:image" content="https://mainthread.app/img/social-card.png">
 
-  <!-- Icons & Theme -->
-  <link rel="icon" href="img/favicon.ico" sizes="256x256" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="img/icon_x180.png" />
-  <meta name="theme-color" content="#0a0a0a" />
+  <!-- Icons & theme -->
+  <link rel="icon" href="https://mainthread.app/img/favicon.ico" sizes="256x256" type="image/x-icon">
+  <link rel="apple-touch-icon" href="https://mainthread.app/img/icon_x180.png">
+  <meta name="theme-color" content="#0a0a0a">
 
-  <!-- Structured Data -->
+  <!-- Structured data -->
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Mainthread",
-      "url": "https://mainthread.app/",
-      "description": "A personal productivity platform that unifies all areas of your life with a priority engine and daily shortlist."
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Mainthread",
+    "url": "https://mainthread.app/",
+    "description": "A personal productivity platform that unifies all areas of your life with a priority engine and daily shortlist."
+  }
+  </script>
+
+  <script>
+    if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      window.addEventListener('load', () => {
+        window.setTimeout(() => {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js';
+          script.async = true;
+          script.onload = () => {
+            if (!window.mixpanel) return;
+            window.mixpanel.init('1ef4ac21c9104af0dca0d5ebec6a6782', {
+              autocapture: true,
+              record_sessions_percent: 0,
+            });
+          };
+          document.head.appendChild(script);
+        }, 1500);
+      }, { once: true });
     }
   </script>
-  <!-- Tailwind CSS v3 CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Serif for body, Sans for UI -->
-  <link href="https://fonts.googleapis.com" rel="preconnect" />
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..600&amp;display=swap"
-    rel="stylesheet" />
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              charcoal: '#0a0a0a',
-              accent: '#137fec',
-              border: '#1f1f1f',
-              muted: '#888888',
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            serif: ['"Source Serif 4"', 'serif'],
-          }
-        }
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Space+Grotesk:wght@300;400;500&display=swap">
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Space+Grotesk:wght@300;400;500&display=swap">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Space+Grotesk:wght@300;400;500&display=swap">
+  </noscript>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --surface: #0F0F0F;
+      --surface-container: #181818;
+      --surface-hi: #202020;
+      --outline-variant: #464646;
+      --ghost: rgba(70, 70, 70, 0.18);
+      --ghost-em: rgba(70, 70, 70, 0.26);
+      --on-surface: #E8E6E3;
+      --on-surface-variant: #A5A2A0;
+      --on-surface-muted: rgba(165, 162, 160, 0.32);
+      --primary: #7BAF6E;
+      --primary-action: #7BAF6E;
+      --primary-container: #4A7A3E;
+      --green: #7BAF6E;
+      --serif: 'Newsreader', Georgia, serif;
+      --label: 'Space Grotesk', system-ui, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--surface);
+      color: var(--on-surface);
+      font-family: var(--serif);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Blueprint grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(72, 72, 72, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(72, 72, 72, 0.055) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(14, 14, 14, 0.65);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-bottom: 1px solid var(--ghost);
+    }
+
+    .nav-logo {
+      font-family: var(--label);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--on-surface);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--primary);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-link {
+      font-family: var(--label);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--on-surface);
+    }
+
+    .nav-cta {
+      font-family: var(--label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 8px 20px;
+      border: 1px solid var(--ghost-em);
+      border-radius: 4px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .nav-cta:hover {
+      border-color: rgba(123, 175, 110, 0.32);
+      background: rgba(123, 175, 110, 0.06);
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* LABELS */
+    .label {
+      font-family: var(--label);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .label::before {
+      content: '›';
+      font-size: 13px;
+    }
+
+    .section-label {
+      font-family: var(--label);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: 20px;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .d1 {
+      transition-delay: 0.1s;
+    }
+
+    .d2 {
+      transition-delay: 0.2s;
+    }
+
+    .d3 {
+      transition-delay: 0.3s;
+    }
+
+    .d4 {
+      transition-delay: 0.45s;
+    }
+
+    /* HERO ENTRANCE */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
       }
     }
-  </script>
-  <style data-purpose="layout-grid">
-    /* Thin-line grid system background */
-    body {
-      background-color: #0a0a0a;
-      background-image:
-        linear-gradient(to right, #1a1a1a 1px, transparent 1px),
-        linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
-      background-size: 40px 40px;
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
-    .content-blur-backdrop {
-      backdrop-filter: blur(100px);
-      background: rgba(10, 10, 10, 0.85);
+    /* BUTTONS */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #7BAF6E 0%, #4A7A3E 100%);
+      color: #0F0F0F;
+      font-family: var(--label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: opacity 0.2s;
     }
 
-    .header-blur-active {
-      backdrop-filter: blur(6px);
-      background: rgba(10, 10, 10, 0.5);
-    }
-  </style>
-  <style data-purpose="typography">
-    .text-balance {
-      text-wrap: balance;
+    .btn-primary:hover {
+      opacity: 0.85;
     }
 
-    .leading-relaxed-serif {
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      color: var(--on-surface-variant);
+      font-family: var(--label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--ghost-em);
+      border-radius: 4px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(70, 70, 70, 0.5);
+      color: var(--on-surface);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 160px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 800px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(123, 175, 110, 0.1) 0%, transparent 65%);
+      top: 50%;
+      right: -160px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 0;
+      animation: fadeIn 0.6s ease both;
+      animation-delay: 0.12s;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 32px;
+      animation: fadeUp 0.32s ease both;
+    }
+
+    .hero-h {
+      font-family: var(--serif);
+      font-size: clamp(52px, 7.5vw, 96px);
+      font-weight: 300;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+      margin-bottom: 32px;
+      max-width: 840px;
+      animation: fadeUp 0.38s ease both;
+      animation-delay: 0.06s;
+    }
+
+    .hero-h em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .hero-sub {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.72;
+      color: var(--on-surface-variant);
+      max-width: 500px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.34s ease both;
+      animation-delay: 0.12s;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.34s ease both;
+      animation-delay: 0.18s;
+    }
+
+    .hero-note {
+      margin-top: 24px;
+      font-family: var(--label);
+      font-size: 10px;
+      font-weight: 300;
+      color: var(--on-surface-muted);
+      letter-spacing: 0.08em;
+      animation: fadeIn 0.3s ease both;
+      animation-delay: 0.24s;
+    }
+
+    /* STRIP — background shift, no borders */
+    .strip {
+      background: var(--surface-container);
+      padding: 52px 0;
+    }
+
+    .strip .container {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .strip-label {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+    }
+
+    .strip-text {
+      font-family: var(--serif);
+      font-size: clamp(19px, 2.4vw, 27px);
+      font-weight: 300;
+      line-height: 1.48;
+      color: var(--on-surface);
+    }
+
+    .strip-text strong {
+      font-weight: 400;
+    }
+
+    /* SYSTEM */
+    .system-section {
+      padding: 140px 0;
+    }
+
+    .system-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.18;
+      letter-spacing: -0.015em;
+      color: var(--on-surface);
+      max-width: 500px;
+      margin-bottom: 80px;
+    }
+
+    .system-grid {
+      display: grid;
+      grid-template-columns: 1fr 40px 1fr 40px 1fr;
+      align-items: stretch;
+    }
+
+    .sys-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--outline-variant);
+      font-family: var(--label);
+      font-size: 16px;
+      opacity: 0.4;
+    }
+
+    .sys-card {
+      background: var(--surface-container);
+      outline: 1px solid var(--ghost);
+      border-radius: 4px;
+      padding: 36px 28px;
+    }
+
+    .sys-num {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: 20px;
+    }
+
+    .sys-num span {
+      color: var(--primary);
+      margin-right: 6px;
+    }
+
+    .sys-title {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--on-surface);
+      margin-bottom: 12px;
+    }
+
+    .sys-desc {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--on-surface-variant);
       line-height: 1.65;
     }
 
-    .accent-glow {
-      text-shadow: 0 0 20px rgba(19, 127, 236, 0.3);
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      outline: 1px solid var(--ghost);
+      border-radius: 100px;
+      color: var(--on-surface-variant);
+    }
+
+    /* PRIORITY */
+    .priority-section {
+      padding: 140px 0;
+      background: var(--surface-container);
+    }
+
+    .priority-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .priority-h {
+      font-family: var(--serif);
+      font-size: clamp(32px, 3.8vw, 50px);
+      font-weight: 300;
+      line-height: 1.18;
+      letter-spacing: -0.015em;
+      color: var(--on-surface);
+      margin-bottom: 24px;
+    }
+
+    .priority-h em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .priority-sub {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--on-surface-variant);
+      line-height: 1.72;
+      max-width: 380px;
+    }
+
+    /* No dividers — vertical space separates factors */
+    .factors {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .factor {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 16px;
+    }
+
+    .factor-n {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      padding-top: 2px;
+    }
+
+    .factor-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--on-surface);
+      margin-bottom: 4px;
+    }
+
+    .factor-desc {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+    }
+
+    /* AGENTS */
+    .agents-section {
+      padding: 140px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .agents-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 70% at 88% 50%, rgba(123, 175, 110, 0.08) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .agents-h {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5vw, 62px);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+      margin-bottom: 24px;
+    }
+
+    .agents-h em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .agents-sub {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--on-surface-variant);
+      line-height: 1.72;
+      margin-bottom: 44px;
+    }
+
+    .agent-feats {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .af {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .af-icon {
+      width: 32px;
+      height: 32px;
+      outline: 1px solid var(--ghost);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .af-icon svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--primary);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .af-title {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--on-surface);
+      margin-bottom: 4px;
+    }
+
+    .af-desc {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+    }
+
+    /* Task flow visual */
+    .task-flow {
+      background: var(--surface-container);
+      outline: 1px solid var(--ghost);
+      border-radius: 4px;
+      padding: 28px;
+    }
+
+    .flow-label {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: 22px;
+    }
+
+    .tcard {
+      background: var(--surface-hi);
+      outline: 1px solid var(--ghost);
+      border-radius: 3px;
+      padding: 14px 16px;
+    }
+
+    .tcard.dim {
+      outline-color: rgba(123, 175, 110, 0.14);
+      opacity: 0.7;
+    }
+
+    .tcard.review {
+      outline-color: rgba(123, 175, 110, 0.25);
+    }
+
+    .agent-log {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .log-line {
+      font-family: var(--label);
+      font-size: 10px;
+      letter-spacing: 0.03em;
+      color: var(--on-surface-muted);
+      line-height: 1.4;
+    }
+
+    .log-line.done {
+      color: var(--on-surface-variant);
+    }
+
+    .log-line.active {
+      color: var(--primary);
+    }
+
+    .review-body {
+      margin-top: 12px;
+    }
+
+    .review-msg {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--on-surface-variant);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .review-details {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+      padding: 10px 12px;
+      background: var(--surface);
+      border-radius: 3px;
+    }
+
+    .review-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .review-row span {
+      font-family: var(--label);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--on-surface-variant);
+    }
+
+    .review-val {
+      color: var(--on-surface) !important;
+      font-weight: 500;
+    }
+
+    .review-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .review-btn {
+      flex: 1;
+      padding: 8px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      font-family: var(--label);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+
+    .review-btn:hover {
+      opacity: 0.85;
+    }
+
+    .review-btn.approve {
+      background: var(--primary);
+      color: #0F0F0F;
+    }
+
+    .review-btn.reject {
+      background: var(--surface);
+      color: var(--on-surface-variant);
+      outline: 1px solid var(--ghost-em);
+    }
+
+    .badge.review-badge {
+      color: var(--primary);
+      outline-color: rgba(123, 175, 110, 0.28);
+    }
+
+    .tcard-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .tcard-title {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--on-surface);
+      font-weight: 400;
+    }
+
+    .badge {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 3px 9px;
+      border-radius: 100px;
+      outline: 1px solid;
+    }
+
+    .badge.p2 {
+      color: var(--primary);
+      outline-color: rgba(123, 175, 110, 0.28);
+    }
+
+    .badge.wip {
+      color: var(--on-surface-variant);
+      outline-color: var(--ghost);
+    }
+
+    .badge.done {
+      color: var(--green);
+      outline-color: rgba(74, 222, 128, 0.28);
+    }
+
+    .tcard-thread {
+      font-family: var(--label);
+      font-size: 10px;
+      color: var(--on-surface-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .flow-step::before,
+    .flow-step::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--ghost);
+    }
+
+    .flow-step span {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .agent-status {
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: rgba(123, 175, 110, 0.06);
+      outline: 1px solid rgba(123, 175, 110, 0.14);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.2;
+      }
+    }
+
+    .status-text {
+      font-family: var(--label);
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--on-surface-variant);
+      letter-spacing: 0.04em;
+    }
+
+    /* PLANS */
+    .plans-section {
+      padding: 140px 0;
+      background: var(--surface-container);
+    }
+
+    .plans-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 8px;
+    }
+
+    .plans-header-row h2 {
+      margin-bottom: 0;
+    }
+
+    .billing-toggle {
+      display: flex;
+      align-items: center;
+      background: var(--surface-hi);
+      outline: 1px solid var(--ghost);
+      border-radius: 4px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .toggle-opt {
+      font-family: var(--label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 7px 16px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      color: var(--on-surface-variant);
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .toggle-opt.active {
+      background: var(--surface);
+      color: var(--on-surface);
+    }
+
+    .toggle-opt:hover:not(.active) {
+      color: var(--on-surface);
+    }
+
+    .save-badge {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: rgba(123, 175, 110, 0.1);
+      padding: 2px 6px;
+      border-radius: 100px;
+      margin-left: 6px;
+    }
+
+    .plan-annual-note {
+      font-family: var(--label);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--on-surface-muted);
+      margin-top: 4px;
+      height: 16px;
+      transition: opacity 0.3s;
+    }
+
+    .billing-annual .plan-annual-note {
+      opacity: 1;
+    }
+
+    .billing-monthly .plan-annual-note {
+      opacity: 0;
+    }
+
+    .plan-amount {
+      transition: opacity 0.15s;
+    }
+
+    .plans-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.18;
+      letter-spacing: -0.015em;
+      color: var(--on-surface);
+      margin-bottom: 8px;
+    }
+
+    .plans-header p {
+      font-family: var(--label);
+      font-size: 12px;
+      color: var(--on-surface-variant);
+      letter-spacing: 0.02em;
+    }
+
+    .plans-footnote {
+      font-family: var(--label);
+      font-size: 11px;
+      color: var(--on-surface-muted);
+      letter-spacing: 0.04em;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Background shifts define columns — no gap dividers */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      background: var(--ghost);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .plan {
+      background: var(--surface);
+      padding: 52px 32px 40px;
+      position: relative;
+    }
+
+    .plan.featured {
+      background: var(--surface-hi);
+    }
+
+    .plan-popular {
+      position: absolute;
+      top: 16px;
+      left: 32px;
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      outline: 1px solid rgba(123, 175, 110, 0.22);
+      background: transparent;
+      padding: 4px 10px;
+      border-radius: 100px;
+      display: inline-block;
+    }
+
+    .plan-name {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--on-surface);
+      margin-bottom: 8px;
+    }
+
+    .plan-tag {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--on-surface-variant);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .plan-price {
+      margin-bottom: 36px;
+    }
+
+    .plan-amount {
+      font-family: var(--serif);
+      font-size: 44px;
+      font-weight: 300;
+      color: var(--on-surface);
+    }
+
+    .plan-period {
+      font-family: var(--label);
+      font-size: 12px;
+      color: var(--on-surface-variant);
+    }
+
+    /* No dividers — whitespace only */
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .plan-features li {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--on-surface-variant);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.45;
+    }
+
+    .plan-features li::before {
+      content: '›';
+      color: var(--primary);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .plan-btn {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      border: 1px solid var(--ghost-em);
+      border-radius: 4px;
+      font-family: var(--label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .plan-btn:hover {
+      border-color: rgba(72, 72, 72, 0.4);
+      color: var(--on-surface);
+    }
+
+    .plan.featured .plan-btn {
+      color: var(--primary);
+      border-color: rgba(123, 175, 110, 0.22);
+    }
+
+    .plan.featured .plan-btn:hover {
+      border-color: rgba(123, 175, 110, 0.5);
+    }
+
+    /* QUOTE */
+    .quote-section {
+      padding: 130px 0;
+      text-align: center;
+    }
+
+    .quote-mark {
+      font-family: var(--serif);
+      font-size: 100px;
+      line-height: 0.55;
+      color: rgba(72, 72, 72, 0.22);
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    blockquote {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.8vw, 34px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--on-surface);
+      line-height: 1.5;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* FINAL CTA */
+    .cta-section {
+      padding: 140px 0;
+      background: var(--surface-container);
+      text-align: center;
+    }
+
+    .cta-h {
+      font-family: var(--serif);
+      font-size: clamp(40px, 5.5vw, 66px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+      margin-bottom: 16px;
+    }
+
+    .cta-sub {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--on-surface-variant);
+      margin-bottom: 48px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 48px;
+      background: var(--surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: var(--label);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--on-surface-variant);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-links a {
+      font-family: var(--label);
+      font-size: 12px;
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--on-surface);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      nav {
+        padding: 16px 24px;
+      }
+
+      .nav-link {
+        display: none;
+      }
+
+      .container {
+        padding: 0 24px;
+      }
+
+      .strip .container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .system-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sys-arrow {
+        display: none;
+      }
+
+      .priority-grid,
+      .agents-grid {
+        grid-template-columns: 1fr;
+        gap: 52px;
+      }
+
+      .plans-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .plans-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .toggle-opt {
+        min-height: 44px;
+        padding: 10px 18px;
+      }
+
+      .review-btn {
+        min-height: 44px;
+      }
+
+      footer {
+        padding: 24px;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* SKIP LINK */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 24px;
+      background: var(--primary);
+      color: #0F0F0F;
+      font-family: var(--label);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      z-index: 999;
+      transition: top 0.2s;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    /* FOCUS STYLES */
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    /* ANNUAL NOTE — hidden by default, shown via JS class */
+    .plan-annual-note {
+      opacity: 0;
+    }
+
+    /* FAQ */
+    .faq-section {
+      padding: 130px 0;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 60px;
+      background: var(--ghost);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .faq-item {
+      background: var(--surface-container);
+      padding: 32px 28px;
+    }
+
+    .faq-q {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--on-surface);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .faq-a {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--on-surface-variant);
+      line-height: 1.7;
+    }
+
+    /* FOOTER UPDATES */
+    footer {
+      padding: 28px 48px;
+      background: var(--surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-logo {
+      font-family: var(--label);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--on-surface-variant);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-legal a {
+      font-family: var(--label);
+      font-size: 11px;
+      color: var(--on-surface-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-legal a:hover {
+      color: var(--on-surface-variant);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-links a {
+      font-family: var(--label);
+      font-size: 12px;
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--on-surface);
     }
   </style>
 </head>
 
-<body class="text-white font-sans selection:bg-brand-accent selection:text-white">
-  <!-- BEGIN: Navigation -->
-  <header
-    class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center pointer-events-none transition-colors duration-300">
-    <div class="pointer-events-auto">
-      <div class="text-brand-accent font-bold text-xl tracking-tighter">mainthread</div>
-    </div>
-    <div class="pointer-events-auto">
-      <a id="login-link" href="https://run.mainthread.app"
-        class="text-sm font-medium text-brand-muted hover:text-white transition-colors hover:underline underline-offset-4">
-        Log in
-      </a>
-    </div>
-  </header>
-  <!-- END: Navigation -->
-  <!-- BEGIN: Main Content Container -->
-  <main class="relative min-h-screen flex flex-col items-center pt-32 pb-24 px-6 md:px-12">
-    <div class="mt-3 mb-12 w-full flex justify-end">
-      <!-- Top right CTA button based on image context -->
-      <div
-        class="bg-[#1a1a1a] hover:bg-[#252525] transition-colors border border-brand-border px-5 py-2.5 rounded-full text-sm font-medium tracking-wide">
-        so, what's mainthread?
-      </div>
-    </div>
-    <!-- Content Card -->
-    <article
-      class="max-w-3xl w-full content-blur-backdrop border border-brand-border rounded-2xl p-8 md:p-12 shadow-2xl"
-      data-purpose="main-concept-article">
-      <!-- BEGIN: Concept Header -->
-      <div class="mb-8">
-        <span class="text-brand-muted text-sm flex items-center gap-2 mb-6 font-medium">
-          Marshaled project context to elucidate mainthread concept
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-            <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          </svg>
-        </span>
-        <h1 class="font-serif text-2xl md:text-3xl leading-relaxed-serif text-gray-200">
-          <span class="text-white font-semibold">mainthread</span> is a personal productivity platform built around one
-          core idea:
-          <span class="italic text-brand-accent accent-glow">you're one person living across multiple contexts</span> —
-          work, family, household — but your tools aren't.
-        </h1>
-      </div>
-      <!-- END: Concept Header -->
-      <!-- BEGIN: The Three Layers -->
-      <section class="space-y-6 mb-12">
-        <p class="font-serif text-lg text-gray-400 italic">The system is organized around three layers:</p>
-        <ul class="space-y-6">
-          <li class="flex items-start gap-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-accent mt-2.5 shrink-0"></span>
-            <p class="font-serif text-lg leading-relaxed text-gray-300">
-              <strong class="text-white font-semibold">Swimlanes</strong> — major life domains (Work, Family, Household,
-              etc.)
-            </p>
-          </li>
-          <li class="flex items-start gap-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-accent mt-2.5 shrink-0"></span>
-            <p class="font-serif text-lg leading-relaxed text-gray-300">
-              <strong class="text-white font-semibold">Threads</strong> — long-running projects within those domains,
-              each with a clear definition of done
-            </p>
-          </li>
-          <li class="flex items-start gap-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-accent mt-2.5 shrink-0"></span>
-            <p class="font-serif text-lg leading-relaxed text-gray-300">
-              <strong class="text-white font-semibold">Tasks</strong> — individual units of work inside threads, each
-              with a deadline, effort estimate, and a dynamically recalculated priority score
-            </p>
-          </li>
-        </ul>
-      </section>
-      <!-- END: The Three Layers -->
-      <!-- BEGIN: Priority Engine & Shortlist -->
-      <section class="space-y-8 mb-12 border-t border-brand-border pt-10">
-        <p class="font-serif text-lg leading-relaxed-serif text-gray-300">
-          What makes it different from a typical todo app is the <span
-          class="text-white font-semibold underline decoration-brand-accent underline-offset-4">priority engine</span>. 
-          Instead of you deciding what to work on, Mainthread scores every task daily across six factors: time pressure, the consequence of missing it, who's affected, how important the thread is, your own judgment, and what's blocking what. The most important things rise to the top automatically.
-        </p>
+<body>
 
-      </section>
-      <!-- END: Priority Engine & Shortlist -->
-      <!-- BEGIN: Vision — AI agents -->
-      <section class="bg-brand-accent/5 border border-brand-accent/20 rounded-xl p-6">
-        <div class="">
-          <p class="font-serif text-lg leading-relaxed-serif text-gray-300">
-            Tasks that need to get done but don't need you to do them — booking appointments, recurring admin, anything operational — Mainthread's <span class="text-brand-accent font-medium">AI agents</span> take them off your plate entirely. You stay focused on what adds real value. Everything else gets handled.
-          </p>
-        </div>
-      </section>
-      <!-- END: Vision — AI agents -->
-      <section class="space-y-8 mb-12 border-t border-brand-border pt-10">
-        <p class="font-serif text-lg leading-relaxed-serif text-gray-300">
-          The end goal is simple: you wake up and you know exactly what to work on today. Not because you spent your morning triaging tasks across five different tools, but because Mainthread has already done that thinking for you — weighing deadlines, your capacity, and what actually matters across every area of your life. <br/> Less anxiety. More output.
-        </p>
-      </section>
-      <!-- BEGIN: Tagline -->
-      <section class="border-t border-brand-border pt-10 text-center">
-        <p class="font-sans font-bold text-2xl md:text-3xl tracking-tight text-white uppercase italic">
-          "One Life, One System."
-        </p>
-      </section>
-      <!-- END: Tagline -->
-      <!-- BEGIN: Footer Actions -->
-      
-      <!-- END: Footer Actions -->
-    </article>
-  </main>
-  <footer class="flex items-center justify-center gap-6 m-2">
-    <div class="text-sm text-brand-muted">
-      © <span id="footer-year"></span> Mainthread
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo">main<span>thread</span></a>
+    <div class="nav-right">
+      <a href="#system" class="nav-link">How it works</a>
+      <a href="#agents" class="nav-link">Agents</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="https://run.mainthread.app?referrer=website" class="nav-cta">Log in →</a>
     </div>
-    <div class="flex items-center gap-4">
-      <a href="https://www.linkedin.com/company/mainthread" target="_blank" rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 text-sm text-brand-muted hover:text-white transition-colors">
-        <span class="hidden sm:inline">LinkedIn</span>
-      </a>
+  </nav>
+
+  <section class="hero" id="main-content" aria-label="Hero">
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-eyebrow">
+        <div class="label">One Life. One System.</div>
+      </div>
+      <h1 class="hero-h">
+        Stop managing<br>five systems.<br>
+        Start running <em>one.</em>
+      </h1>
+      <p class="hero-sub">
+        Mainthread unifies every commitment across work, family, and household into one intelligently prioritized system
+        — then deploys AI agents to handle what doesn't need you.
+      </p>
+      <div class="hero-actions">
+        <a href="https://run.mainthread.app?referrer=website" class="btn-primary">Start free trial</a>
+        <a href="#system" class="btn-secondary">See how it works ↓</a>
+      </div>
+      <p class="hero-note">14-day free trial &nbsp;·&nbsp; No credit card required</p>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="container">
+      <div class="strip-label">The problem</div>
+      <p class="strip-text">
+        Your work lives in twelve tabs. Your family runs on WhatsApp. Your household exists somewhere in your inbox.
+        <strong>You're one person. Your tools aren't.</strong>
+      </p>
+    </div>
+  </div>
+
+  <section class="system-section" id="system">
+    <div class="container">
+      <div class="section-label reveal">The system</div>
+      <h2 class="reveal d1">Three layers.<br>Every area<br>of your life.</h2>
+      <div class="system-grid">
+        <div class="sys-card reveal d1">
+          <div class="sys-num"><span>01</span>Swimlanes</div>
+          <div class="sys-title">Life domains</div>
+          <p class="sys-desc">The major contexts of your life. Everything belongs somewhere. No task floats in a void.
+          </p>
+          <div class="pills">
+            <span class="pill">Work</span><span class="pill">Family</span><span class="pill">Household</span><span
+              class="pill">Personal</span>
+          </div>
+        </div>
+        <div class="sys-arrow reveal d2">→</div>
+        <div class="sys-card reveal d2">
+          <div class="sys-num"><span>02</span>Threads</div>
+          <div class="sys-title">Big things in motion</div>
+          <p class="sys-desc">Each with a clear definition of done. Whether it takes a week or a year — it lives in one
+            place.</p>
+          <div class="pills">
+            <span class="pill">Q3 launch</span><span class="pill">Home reno</span><span class="pill">Kids' school</span>
+          </div>
+        </div>
+        <div class="sys-arrow reveal d3">→</div>
+        <div class="sys-card reveal d3">
+          <div class="sys-num"><span>03</span>Tasks</div>
+          <div class="sys-title">One thing at a time</div>
+          <p class="sys-desc">Each with a deadline, effort estimate, and a daily-recalculated priority score. Done by
+            you — or delegated.</p>
+          <div class="pills">
+            <span class="pill">Pay water bill</span><span class="pill">Call the school</span><span class="pill">Review
+              contract</span><span class="pill">Book dentist</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="priority-section">
+    <div class="container">
+      <div class="priority-grid">
+        <div>
+          <div class="section-label reveal">Priority engine</div>
+          <h2 class="priority-h reveal d1">The right task<br>at the right time.<br><em>Always.</em></h2>
+          <p class="priority-sub reveal d2">Every task is scored daily across six factors. No morning triage. No
+            forgetting what matters. Just a ranked, capacity-aware shortlist — ready the moment you open the app.</p>
+        </div>
+        <div class="factors">
+          <div class="factor reveal d1">
+            <div class="factor-n">01</div>
+            <div>
+              <div class="factor-name">Time pressure</div>
+              <div class="factor-desc">Deadline versus effort remaining — not just when it's due, but whether you have
+                enough time left to finish it.</div>
+            </div>
+          </div>
+          <div class="factor reveal d2">
+            <div class="factor-n">02</div>
+            <div>
+              <div class="factor-name">Consequence of missing</div>
+              <div class="factor-desc">Some missed deadlines are inconvenient. Others are catastrophic. Mainthread knows
+                the difference.</div>
+            </div>
+          </div>
+          <div class="factor reveal d3">
+            <div class="factor-n">03</div>
+            <div>
+              <div class="factor-name">Stakeholder impact</div>
+              <div class="factor-desc">Failing your spouse or your team hits differently than failing only yourself.
+              </div>
+            </div>
+          </div>
+          <div class="factor reveal d1">
+            <div class="factor-n">04</div>
+            <div>
+              <div class="factor-name">Thread importance</div>
+              <div class="factor-desc">A task inside a high-priority project rises above one in a lower-priority area —
+                even with similar deadlines.</div>
+            </div>
+          </div>
+          <div class="factor reveal d2">
+            <div class="factor-n">05</div>
+            <div>
+              <div class="factor-name">Your judgment</div>
+              <div class="factor-desc">Flag something as important and the system listens. Your instinct, factored in
+                alongside everything else.</div>
+            </div>
+          </div>
+          <div class="factor reveal d3">
+            <div class="factor-n">06</div>
+            <div>
+              <div class="factor-name">Dependency order</div>
+              <div class="factor-desc">Blockers rise automatically. You can't do the DMV without renewing insurance
+                first.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="agents-section" id="agents">
+    <div class="container">
+      <div class="agents-grid">
+        <div>
+          <div class="section-label reveal">AI agents</div>
+          <h2 class="agents-h reveal d1">Some tasks<br>don't need <em>you.</em></h2>
+          <p class="agents-sub reveal d2">Mainthread agents browse the web, fill forms, research vendors, book
+            appointments, and complete real-world administrative work on your behalf. You stay focused on what adds real
+            value.</p>
+          <div class="agent-feats">
+            <div class="af reveal d1">
+              <div class="af-icon"><svg viewBox="0 0 14 14" aria-hidden="true">
+                  <rect x="1" y="2" width="12" height="8" rx="1.5" />
+                  <path d="M4 13h6M7 10v3" />
+                </svg></div>
+              <div>
+                <div class="af-title">Browser automation</div>
+                <div class="af-desc">Agents navigate real websites, fill real forms, and complete real workflows — no
+                  copy-paste required.</div>
+              </div>
+            </div>
+            <div class="af reveal d2">
+              <div class="af-icon"><svg viewBox="0 0 14 14" aria-hidden="true">
+                  <path d="M2 4h10M2 7h6M2 10h4" />
+                  <circle cx="11" cy="10" r="2.5" />
+                  <path d="M11 8.5v1.5l1 1" />
+                </svg></div>
+              <div>
+                <div class="af-title">Playbooks & Skills</div>
+                <div class="af-desc">Teach agents how you do things. Your preferences and workflows — remembered
+                  permanently.</div>
+              </div>
+            </div>
+            <div class="af reveal d3">
+              <div class="af-icon"><svg viewBox="0 0 14 14" aria-hidden="true">
+                  <path d="M7 1a6 6 0 110 12A6 6 0 017 1z" />
+                  <path d="M7 4v3l2 2" />
+                </svg></div>
+              <div>
+                <div class="af-title">Human-in-the-loop</div>
+                <div class="af-desc">Agents pause and ask before taking sensitive actions. You approve; they execute.
+                  Full control, zero tedium.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal d2">
+          <div class="task-flow">
+            <div class="flow-label">Live delegation flow</div>
+            <div class="tcard">
+              <div class="tcard-top"><span class="tcard-title">Pay the water bill</span><span class="badge p2">P2</span>
+              </div>
+              <div class="tcard-thread">Household › Bills</div>
+            </div>
+            <div class="flow-step"><span>Delegated to agent</span></div>
+            <div class="tcard dim">
+              <div class="tcard-top"><span class="tcard-title">Pay the water bill</span><span class="badge wip">In
+                  progress</span></div>
+              <div class="tcard-thread">Household › Bills</div>
+              <div class="agent-log">
+                <div class="log-line done">✓ Loaded skill: Pay municipality bill</div>
+                <div class="log-line done">✓ Browser session started</div>
+                <div class="log-line done">✓ Logged into municipality portal</div>
+                <div class="log-line done">✓ Located invoice — filling payment form</div>
+                <div class="log-line active">→ Requesting your approval...</div>
+              </div>
+            </div>
+            <div class="flow-step"><span>Pending your review</span></div>
+            <div class="tcard review">
+              <div class="tcard-top"><span class="tcard-title">Pay the water bill</span><span
+                  class="badge review-badge">Needs approval</span></div>
+              <div class="tcard-thread">Household › Bills</div>
+              <div class="review-body">
+                <p class="review-msg">Ready to pay your water bill for October 2026.</p>
+                <div class="review-details">
+                  <div class="review-row"><span>Amount</span><span class="review-val">$74.56</span></div>
+                  <div class="review-row"><span>Invoice</span><span class="review-val">INV-003</span></div>
+                  <div class="review-row"><span>Due date</span><span class="review-val">Oct 31, 2026</span></div>
+                </div>
+                <div class="review-actions">
+                  <button type="button" class="review-btn approve">Approve</button>
+                  <button type="button" class="review-btn reject">Reject</button>
+                </div>
+              </div>
+            </div>
+            <div class="agent-status">
+              <div class="status-dot"></div>
+              <div class="status-text">1 agent paused &nbsp;·&nbsp; waiting for your approval</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="plans-section" id="pricing">
+    <div class="container">
+      <div class="plans-header reveal">
+        <div class="section-label" style="margin-bottom:16px;">Pricing</div>
+        <div class="plans-header-row">
+          <h2>Pick your level of support.</h2>
+          <div class="billing-toggle" id="billingToggle">
+            <button type="button" class="toggle-opt active" data-billing="monthly" aria-pressed="true">Monthly</button>
+            <button type="button" class="toggle-opt" data-billing="annual" aria-pressed="false">Annual <span
+                class="save-badge">Save 17%</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="plans-grid reveal d1">
+        <div class="plan">
+          <div class="plan-name">Focus</div>
+          <div class="plan-tag">Your entire life, organized and prioritized.</div>
+          <div class="plan-price">
+            <span class="plan-amount" data-monthly="$19" data-annual="$16">$19</span><span
+              class="plan-period">/mo</span>
+            <div class="plan-annual-note">$190 billed annually</div>
+          </div>
+          <ul class="plan-features">
+            <li>Unlimited swimlanes, threads & tasks</li>
+            <li>AI priority engine — daily recalculation</li>
+            <li>Cockpit — your daily shortlist</li>
+            <li>Planning board & calendar view</li>
+            <li>Delegate tasks to contacts</li>
+            <li>Weekly completed tasks email</li>
+          </ul>
+          <a href="https://run.mainthread.app?referrer=website" class="plan-btn">Start free trial</a>
+        </div>
+        <div class="plan featured">
+          <div class="plan-popular">Most popular</div>
+          <div class="plan-name">Delegate</div>
+          <div class="plan-tag">Stop doing tasks an agent can do for you.</div>
+          <div class="plan-price">
+            <span class="plan-amount" data-monthly="$49" data-annual="$41">$49</span><span
+              class="plan-period">/mo</span>
+            <div class="plan-annual-note">$490 billed annually</div>
+          </div>
+          <ul class="plan-features">
+            <li>Everything in Focus</li>
+            <li>Task execution agents (browser automation)</li>
+            <li>Playbooks & Skills</li>
+            <li>Up to 50 agent executions/mo</li>
+            <li>Human-in-the-loop approvals</li>
+            <li>Instant priority recalculation</li>
+          </ul>
+          <a href="https://run.mainthread.app?referrer=website" class="plan-btn">Start free trial</a>
+        </div>
+        <div class="plan">
+          <div class="plan-name">Autopilot</div>
+          <div class="plan-tag">A chief of staff in your pocket.</div>
+          <div class="plan-price">
+            <span class="plan-amount" data-monthly="$149" data-annual="$124">$149</span><span
+              class="plan-period">/mo</span>
+            <div class="plan-annual-note">$1,490 billed annually</div>
+          </div>
+          <ul class="plan-features">
+            <li>Everything in Delegate</li>
+            <li>Dedicated Concierge Agent</li>
+            <li>WhatsApp integration</li>
+            <li>Daily briefings & smart suggestions</li>
+            <li>Unlimited agent executions</li>
+            <li>Concierge-written weekly narrative</li>
+          </ul>
+          <a href="https://run.mainthread.app?referrer=website" class="plan-btn">Start free trial</a>
+        </div>
+      </div>
+      <p class="plans-footnote">14-day free trial on all plans &nbsp;·&nbsp; No credit card required</p>
+    </div>
+  </section>
+
+  <section class="quote-section">
+    <div class="container">
+      <span class="quote-mark reveal">"</span>
+      <blockquote class="reveal d1">A part-time executive assistant costs $30,000 a year.<br>Autopilot costs $1,800.
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="faq-section" aria-label="Frequently asked questions">
+    <div class="container">
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="reveal d1"
+        style="font-family:var(--serif);font-size:clamp(34px,4vw,52px);font-weight:300;line-height:1.18;letter-spacing:-0.015em;color:var(--on-surface);max-width:500px;">
+        Questions we get asked.</h2>
+      <div class="faq-grid reveal d2">
+        <div class="faq-item">
+          <p class="faq-q">What counts as an agent task execution?</p>
+          <p class="faq-a">Each time an agent completes or attempts a delegated task on your behalf. Viewing, approving,
+            or replying doesn't count toward your limit.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Can I change plans?</p>
+          <p class="faq-a">Yes, any time. Upgrades are immediate; downgrades apply at the next billing cycle. No
+            penalties, no friction.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">What happens if I hit the 50-execution limit on Delegate?</p>
+          <p class="faq-a">You'll be notified and can either upgrade to Autopilot or wait for your next monthly reset.
+            Agents won't act without your knowledge.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Is my data private?</p>
+          <p class="faq-a">Yes. Each account is fully isolated. Agents operate on your behalf only, with your explicit
+            approval for every sensitive action.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Do you offer refunds?</p>
+          <p class="faq-a">If you're not satisfied within your first 14 days, we'll refund you — no questions asked.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Does Mainthread work for non-technical people?</p>
+          <p class="faq-a">Absolutely. Mainthread is built for anyone juggling multiple life commitments — lawyers,
+            parents, managers, freelancers. No technical background required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="container">
+    <h2 class="cta-h reveal">Ready to stop juggling?</h2>
+    <p class="cta-sub reveal d1">14-day free trial. No credit card required.</p>
+    <div class="cta-actions reveal d2">
+      <a href="https://run.mainthread.app?referrer=website" class="btn-secondary">Start with Focus</a>
+      <a href="https://run.mainthread.app?referrer=website" class="btn-primary">Start with Autopilot →</a>
+    </div>
+  </div>
+  </section>
+
+  <footer role="contentinfo">
+    <div class="footer-left">
+      <div class="footer-logo">mainthread © 2026</div>
+      <!-- <div class="footer-legal">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </div> -->
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/company/mainthread">LinkedIn</a>
+      <a href="https://run.mainthread.app?referrer=website">Log in</a>
     </div>
   </footer>
-  <!-- END: Main Content Container -->
-  <!-- BEGIN: Decorative Background Elements -->
-  <div aria-hidden="true" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
-    <div class="absolute top-1/4 -left-20 w-96 h-96 bg-brand-accent opacity-5 blur-[120px] rounded-full"></div>
-    <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-brand-accent opacity-5 blur-[120px] rounded-full"></div>
-  </div>
-  <!-- END: Decorative Background Elements -->
+
   <script>
-      (function () {
-        const loginLink = document.getElementById('login-link');
-        if (loginLink) {
-          const url = new URL('https://run.mainthread.app');
-          url.searchParams.set('referrer', 'website');
-          loginLink.href = url.toString();
-        }
-      })();
-      (function () {
-        const header = document.querySelector('header');
-        if (!header) return;
+    const nav = document.getElementById('nav');
+    const revealEls = document.querySelectorAll('.reveal');
+    const toggleButtons = document.querySelectorAll('.toggle-opt');
+    const planAmounts = document.querySelectorAll('.plan-amount');
+    const grid = document.querySelector('.plans-grid');
 
-        const toggleHeaderBlur = () => {
-          if (window.scrollY > 0) {
-            header.classList.add('header-blur-active');
-          } else {
-            header.classList.remove('header-blur-active');
-          }
-        };
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
 
-        toggleHeaderBlur();
-        window.addEventListener('scroll', toggleHeaderBlur, { passive: true });
-      })();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+
+    revealEls.forEach((el) => observer.observe(el));
+
+    grid.classList.add('billing-monthly');
+    toggleButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        toggleButtons.forEach((toggle) => {
+          toggle.classList.remove('active');
+          toggle.setAttribute('aria-pressed', 'false');
+        });
+
+        button.classList.add('active');
+        button.setAttribute('aria-pressed', 'true');
+
+        const billing = button.dataset.billing;
+        grid.classList.toggle('billing-annual', billing === 'annual');
+        grid.classList.toggle('billing-monthly', billing === 'monthly');
+
+        planAmounts.forEach((amount) => {
+          amount.style.opacity = '0';
+          window.setTimeout(() => {
+            amount.textContent = billing === 'annual' ? amount.dataset.annual : amount.dataset.monthly;
+            amount.style.opacity = '1';
+          }, 150);
+        });
+      });
+    });
   </script>
 </body>
 
