@@ -265,11 +265,11 @@
       transition-delay: 0.45s;
     }
 
-    /* HERO ENTRANCE — CSS keyframes, fire immediately on load */
+    /* HERO ENTRANCE */
     @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(22px);
+        transform: translateY(12px);
       }
 
       to {
@@ -286,31 +286,6 @@
       to {
         opacity: 1;
       }
-    }
-
-    .hero-eyebrow {
-      animation: fadeUp 0.7s ease both;
-      animation-delay: 0.1s;
-    }
-
-    .hero-h {
-      animation: fadeUp 0.8s ease both;
-      animation-delay: 0.25s;
-    }
-
-    .hero-sub {
-      animation: fadeUp 0.7s ease both;
-      animation-delay: 0.45s;
-    }
-
-    .hero-actions {
-      animation: fadeUp 0.7s ease both;
-      animation-delay: 0.6s;
-    }
-
-    .hero-note {
-      animation: fadeIn 0.6s ease both;
-      animation-delay: 0.85s;
     }
 
     /* BUTTONS */
@@ -378,12 +353,13 @@
       transform: translateY(-50%);
       pointer-events: none;
       z-index: 0;
-      animation: fadeIn 1.4s ease both;
-      animation-delay: 0.5s;
+      animation: fadeIn 0.6s ease both;
+      animation-delay: 0.12s;
     }
 
     .hero-eyebrow {
       margin-bottom: 32px;
+      animation: fadeUp 0.32s ease both;
     }
 
     .hero-h {
@@ -395,6 +371,8 @@
       color: var(--on-surface);
       margin-bottom: 32px;
       max-width: 840px;
+      animation: fadeUp 0.38s ease both;
+      animation-delay: 0.06s;
     }
 
     .hero-h em {
@@ -410,6 +388,8 @@
       color: var(--on-surface-variant);
       max-width: 500px;
       margin-bottom: 48px;
+      animation: fadeUp 0.34s ease both;
+      animation-delay: 0.12s;
     }
 
     .hero-actions {
@@ -417,6 +397,8 @@
       gap: 16px;
       align-items: center;
       flex-wrap: wrap;
+      animation: fadeUp 0.34s ease both;
+      animation-delay: 0.18s;
     }
 
     .hero-note {
@@ -426,6 +408,8 @@
       font-weight: 300;
       color: var(--on-surface-muted);
       letter-spacing: 0.08em;
+      animation: fadeIn 0.3s ease both;
+      animation-delay: 0.24s;
     }
 
     /* STRIP — background shift, no borders */
