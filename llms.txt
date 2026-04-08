@@ -1,0 +1,66 @@
+# Mainthread
+
+> One Life, One System — a personal productivity platform for high-performance executives who manage complex work and personal commitments across disconnected tools.
+
+Mainthread replaces the fragmentation of juggling multiple life domains (work, family, household) with a single unified system. It is positioned not against productivity apps, but against the human alternatives: executive assistants and chiefs of staff.
+
+## Core Concepts
+
+### Swimlanes
+The top-level organizational unit. Each swimlane represents a life domain — for example: Work, Family, Household. Everything lives inside a swimlane.
+
+### Threads
+Long-running projects or areas of responsibility within a swimlane. Threads have completion criteria and span days, weeks, or months. Examples: "Close Series A", "Plan family vacation to Japan", "Kitchen renovation".
+
+### Tasks
+Individual units of work within a thread. Tasks have deadlines, effort estimates, priority scores, and optional delegation to an AI agent. Tasks are the atomic unit that the system acts on daily.
+
+### Priority Engine
+A daily scoring system that ranks tasks across all swimlanes using a weighted combination of: urgency, consequence of inaction, stakeholder impact, thread importance, user flags, and dependency ordering. The engine produces a capacity-aware daily shortlist — the tasks that actually matter today.
+
+## AI Features
+
+### Concierge Agent
+A context-aware AI assistant ("smart butler") with full read/write access to all Mainthread data. Accessible via in-app chat and WhatsApp (dedicated phone number). Handles natural language queries, task creation, status updates, and briefings. Memory is persistent across sessions and channels.
+
+Planned proactive behaviors (v1+):
+- Daily briefings
+- Deadline monitoring
+- Smart delegation suggestions
+- Ingestion of incoming emails and messages into tasks
+
+### Task Executor Agent
+An AI agent that performs real-world administrative tasks on the user's behalf via browser automation (Stagehand + Browserbase). Users delegate tasks; the agent executes them using web browsers — filling forms, booking services, paying bills, and more.
+
+Execution follows an Understand → Plan → Reflect reasoning loop. When the agent requires sensitive input (passwords, credit card numbers) or human judgment, it pauses via a Human-in-the-Loop (HITL) modal and waits for user response before continuing. Sensitive data is never persisted server-side.
+
+### Playbooks & Skills
+Users author Skills — free-text instructions for how to perform specific recurring tasks (e.g., "Pay arnona", "Book a Pilates class"). Skills are grouped into Playbooks scoped to the user. When the Task Executor Agent runs a task, relevant Skills are loaded dynamically, giving the agent personalized context and preferences.
+
+### Effort Estimation
+At task ingestion, an LLM pipeline estimates effort by decomposing the task into subtasks and assigning confidence-weighted estimates. LLM estimates are blended with user-provided estimates (~70/30, adjusted by confidence). User-provided estimates are treated as unreliable hints, not ground truth.
+
+### Scheduling
+An event-driven LLM-powered scheduler assigns start dates to incoming tasks based on current capacity and dependency ordering. A deterministic validator acts as a safety net. The system is not cron-based — scheduling events fire when tasks are created or updated.
+
+## Philosophy
+
+**One Life, One System.** Work and personal life don't have separate operating systems. Mainthread treats them as one portfolio of commitments, prioritized together.
+
+**Delegation, not management.** The product's direction is toward a personal delegation layer — users delegate tasks to AI agents rather than managing them manually. Only check-in time is counted against personal capacity for delegated tasks.
+
+**Vertical, not horizontal.** Every feature ships end-to-end (UI + API + data) in working slices. No half-built layers.
+
+## Target Users
+
+**High-performance executives** who:
+- Manage 5–15 active long-running commitments across work and personal life simultaneously
+- Are currently served by an executive assistant or chief of staff (or wish they were)
+- Are overwhelmed by context-switching between tools, not by lack of tools
+- Want AI to act, not just remind
+
+**Owner-operators** who:
+- Run small businesses without back-office staff (field trades, service businesses, solo operators)
+- Are simultaneously the CEO, admin, and frontline worker
+- Need a system that handles mundane operational tasks so they can stay focused on the work itself
+- Use Mainthread as their back office — automating scheduling, follow-ups, payments, and coordination
