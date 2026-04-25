@@ -44,14 +44,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Space+Grotesk:wght@300;400;500&display=swap">
-  <link rel="stylesheet" media="print" onload="this.media='all'"
-    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Space+Grotesk:wght@300;400;500&display=swap">
-  <noscript>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Space+Grotesk:wght@300;400;500&display=swap">
-  </noscript>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Space+Grotesk:wght@300;400;500&display=swap"
+    rel="stylesheet">
 
   <style>
     *,
@@ -245,11 +240,11 @@
       transition-delay: 0.45s;
     }
 
-    /* HERO ENTRANCE */
+    /* HERO ENTRANCE — CSS keyframes, fire immediately on load */
     @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(22px);
       }
 
       to {
@@ -266,6 +261,31 @@
       to {
         opacity: 1;
       }
+    }
+
+    .hero-eyebrow {
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.1s;
+    }
+
+    .hero-h {
+      animation: fadeUp 0.8s ease both;
+      animation-delay: 0.25s;
+    }
+
+    .hero-sub {
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.45s;
+    }
+
+    .hero-actions {
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.6s;
+    }
+
+    .hero-note {
+      animation: fadeIn 0.6s ease both;
+      animation-delay: 0.85s;
     }
 
     /* BUTTONS */
@@ -333,13 +353,12 @@
       transform: translateY(-50%);
       pointer-events: none;
       z-index: 0;
-      animation: fadeIn 0.6s ease both;
-      animation-delay: 0.12s;
+      animation: fadeIn 1.4s ease both;
+      animation-delay: 0.5s;
     }
 
     .hero-eyebrow {
       margin-bottom: 32px;
-      animation: fadeUp 0.32s ease both;
     }
 
     .hero-h {
@@ -351,8 +370,6 @@
       color: var(--on-surface);
       margin-bottom: 32px;
       max-width: 840px;
-      animation: fadeUp 0.38s ease both;
-      animation-delay: 0.06s;
     }
 
     .hero-h em {
@@ -368,8 +385,6 @@
       color: var(--on-surface-variant);
       max-width: 500px;
       margin-bottom: 48px;
-      animation: fadeUp 0.34s ease both;
-      animation-delay: 0.12s;
     }
 
     .hero-actions {
@@ -377,8 +392,6 @@
       gap: 16px;
       align-items: center;
       flex-wrap: wrap;
-      animation: fadeUp 0.34s ease both;
-      animation-delay: 0.18s;
     }
 
     .hero-note {
@@ -388,8 +401,6 @@
       font-weight: 300;
       color: var(--on-surface-muted);
       letter-spacing: 0.08em;
-      animation: fadeIn 0.3s ease both;
-      animation-delay: 0.24s;
     }
 
     /* STRIP — background shift, no borders */
@@ -1327,6 +1338,383 @@
       }
     }
 
+    /* FOUNDING MEMBER BANNER */
+    .founding-banner {
+      background: rgba(123, 175, 110, 0.07);
+      outline: 1px solid rgba(123, 175, 110, 0.18);
+      border-radius: 4px;
+      padding: 32px 40px;
+      margin-bottom: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .founding-left {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .founding-eyebrow {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .founding-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .founding-headline {
+      font-family: var(--serif);
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 300;
+      color: var(--on-surface);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .founding-sub {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+    }
+
+    .founding-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .founding-slots {
+      font-family: var(--label);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--on-surface-muted);
+      text-align: right;
+    }
+
+    .founding-slots strong {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    @media (max-width: 860px) {
+      .founding-banner {
+        padding: 24px;
+      }
+
+      .founding-right {
+        align-items: flex-start;
+      }
+
+      .founding-slots {
+        text-align: left;
+      }
+    }
+
+    /* TRUST / SECURITY PRINCIPALS */
+    .trust-section {
+      padding: 100px 0;
+      background: var(--surface-container);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .trust-h {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.2vw, 42px);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--on-surface);
+      margin-top: 16px;
+    }
+
+    .trust-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .trust-card {
+      background: var(--surface-hi);
+      outline: 1px solid var(--ghost);
+      border-radius: 4px;
+      padding: 24px 28px;
+    }
+
+    .trust-card-top {
+      margin-bottom: 10px;
+    }
+
+    .trust-agent-label {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .trust-card-body {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--on-surface-variant);
+      line-height: 1.68;
+    }
+
+    @media (max-width: 860px) {
+      .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* SECURITY MODEL */
+    .security-section {
+      padding: 140px 0;
+      background: var(--surface);
+    }
+
+    .security-intro {
+      margin-bottom: 64px;
+    }
+
+    .security-h {
+      font-family: var(--serif);
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.18;
+      letter-spacing: -0.015em;
+      color: var(--on-surface);
+      max-width: 600px;
+      margin: 16px 0 20px;
+    }
+
+    .security-sub {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--on-surface-variant);
+      line-height: 1.72;
+      max-width: 560px;
+    }
+
+    .security-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--ghost);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .security-card {
+      background: var(--surface-container);
+      padding: 48px 40px;
+    }
+
+    .security-card-icon {
+      width: 40px;
+      height: 40px;
+      outline: 1px solid var(--ghost);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      color: var(--primary);
+    }
+
+    .security-card-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .security-card-label {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .security-card-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--on-surface);
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .security-card-body {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--on-surface-variant);
+      line-height: 1.72;
+      margin-bottom: 28px;
+    }
+
+    .security-card-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .security-pill {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      outline: 1px solid var(--ghost);
+      border-radius: 100px;
+      color: var(--on-surface-variant);
+    }
+
+    .security-footnote {
+      font-family: var(--label);
+      font-size: 11px;
+      color: var(--on-surface-muted);
+      letter-spacing: 0.04em;
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 860px) {
+      .security-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .security-card {
+        padding: 36px 28px;
+      }
+    }
+
+    .capability-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .capability-list li {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--on-surface-variant);
+      line-height: 1.55;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .capability-list li::before {
+      content: '›';
+      color: var(--primary);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .cap-badge {
+      font-family: var(--label);
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-surface-muted);
+      outline: 1px solid var(--ghost);
+      padding: 1px 6px;
+      border-radius: 100px;
+      margin-left: 4px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    /* Email card in flow visual */
+    .email-card {
+      background: var(--surface-hi);
+      outline: 1px solid var(--ghost);
+      border-radius: 3px;
+      padding: 12px 14px;
+    }
+
+    .email-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      gap: 8px;
+    }
+
+    .email-from {
+      font-family: var(--label);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .email-tag {
+      font-family: var(--label);
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-surface-muted);
+      background: var(--ghost);
+      padding: 2px 7px;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+
+    .email-subject {
+      font-family: var(--serif);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--on-surface);
+      margin-bottom: 4px;
+    }
+
+    .email-preview {
+      font-family: var(--serif);
+      font-size: 11px;
+      color: var(--on-surface-muted);
+      line-height: 1.5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     /* SKIP LINK */
     .skip-link {
       position: absolute;
@@ -1461,7 +1849,6 @@
       color: var(--on-surface);
     }
   </style>
-
   <!-- Paste this right before your closing </head> tag -->
   <script type="text/javascript">
     (function () {
@@ -1484,7 +1871,6 @@
       })
     })();
   </script>
-
 </head>
 
 <body>
@@ -1642,9 +2028,9 @@
         <div>
           <div class="section-label reveal">AI agents</div>
           <h2 class="agents-h reveal d1">Some tasks<br>don't need <em>you.</em></h2>
-          <p class="agents-sub reveal d2">Mainthread agents browse the web, fill forms, research vendors, book
-            appointments, and complete real-world administrative work on your behalf. You stay focused on what adds real
-            value.</p>
+          <p class="agents-sub reveal d2">Forward a bill, CC your Concierge on a thread, or send a WhatsApp. It converts
+            what you share into tasks and hands them off to agents that browse the web, fill forms, book appointments,
+            and complete real-world administrative work — all without you lifting a finger until it matters.</p>
           <div class="agent-feats">
             <div class="af reveal d1">
               <div class="af-icon"><svg viewBox="0 0 14 14" aria-hidden="true">
@@ -1685,12 +2071,21 @@
         <div class="reveal d2">
           <div class="task-flow">
             <div class="flow-label">Live delegation flow</div>
+            <div class="email-card">
+              <div class="email-meta">
+                <span class="email-from">noreply@citywater.gov</span>
+                <span class="email-tag">Inbox</span>
+              </div>
+              <div class="email-subject">Water Bill — October 2026</div>
+              <div class="email-preview">Your bill of $74.56 is due by October 31. Pay at citywater.gov/pay...</div>
+            </div>
+            <div class="flow-step"><span>Concierge Agent created task</span></div>
             <div class="tcard">
               <div class="tcard-top"><span class="tcard-title">Pay the water bill</span><span class="badge p2">P2</span>
               </div>
               <div class="tcard-thread">Household › Bills</div>
             </div>
-            <div class="flow-step"><span>Delegated to agent</span></div>
+            <div class="flow-step"><span>Delegated to Task Executor Agent</span></div>
             <div class="tcard dim">
               <div class="tcard-top"><span class="tcard-title">Pay the water bill</span><span class="badge wip">In
                   progress</span></div>
@@ -1731,12 +2126,111 @@
     </div>
   </section>
 
+  <section class="security-section">
+    <div class="container">
+      <div class="security-intro reveal">
+        <div class="section-label">Agent capabilities</div>
+        <h2 class="security-h reveal d1">Two agents.<br>One thinks. One acts.</h2>
+        <p class="security-sub reveal d2">Mainthread runs two purpose-built agents. The Concierge manages context,
+          communication, and decisions. The Task Executor handles real-world work on your behalf.</p>
+      </div>
+      <div class="security-grid reveal d2">
+
+        <div class="security-card">
+          <div class="security-card-icon">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.25" />
+              <path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.25" />
+            </svg>
+          </div>
+          <div class="security-card-label">Concierge Agent</div>
+          <div class="security-card-title">Your context layer.</div>
+          <ul class="capability-list">
+            <li>Converts emails, messages, and voice notes into structured tasks</li>
+            <li>Sends you a daily briefing across all life domains</li>
+            <li>Monitors deadlines and flags what needs attention</li>
+            <li>Suggests what to delegate before you think to ask</li>
+            <li>Communicates via WhatsApp, email, or in-app chat</li>
+            <li>Learns your preferences and adapts over time</li>
+            <li>Proactively follows up with people you've delegated tasks to, and flags delays before they become
+              problems</li>
+            <li>Hands tasks off to the executor when action is needed</li>
+          </ul>
+        </div>
+
+        <div class="security-card">
+          <div class="security-card-icon">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="2" y="5" width="16" height="11" rx="1.5" stroke="currentColor" stroke-width="1.25" />
+              <path d="M2 9h16" stroke="currentColor" stroke-width="1.25" />
+              <rect x="4" y="11.5" width="4" height="2" rx="0.5" fill="currentColor" opacity="0.5" />
+            </svg>
+          </div>
+          <div class="security-card-label">Task Executor Agent</div>
+          <div class="security-card-title">Your action layer.</div>
+          <ul class="capability-list">
+            <li>Browses real websites and navigates complex web workflows</li>
+            <li>Fills and submits forms on your behalf</li>
+            <li>Books appointments, reservations, and services</li>
+            <li>Researches vendors, options, and pricing</li>
+            <li>Makes payments via prepaid virtual card — you set the budget <span class="cap-badge">v1</span></li>
+            <li>Pauses and requests your approval before sensitive actions</li>
+            <li>Returns a structured outcome report for every task</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-section">
+    <div class="container">
+      <div class="trust-grid reveal">
+        <div class="trust-intro">
+          <div class="section-label">Different security principals</div>
+          <h2 class="trust-h">No access grants.<br>No integrations.<br>No exposure.</h2>
+        </div>
+        <div class="trust-cards">
+          <div class="trust-card reveal d1">
+            <div class="trust-card-top">
+              <span class="trust-agent-label">Concierge Agent</span>
+            </div>
+            <p class="trust-card-body">Has its own dedicated email address and WhatsApp number. You forward what it
+              needs — it never touches your inbox, calendar, or accounts.</p>
+          </div>
+          <div class="trust-card reveal d2">
+            <div class="trust-card-top">
+              <span class="trust-agent-label">Task Executor Agent</span>
+            </div>
+            <p class="trust-card-body">Runs in a fully isolated browser session. For payments, it uses a prepaid virtual
+              card with a budget cap you define — no connection to your financial accounts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="plans-section" id="pricing">
     <div class="container">
+
+      <div class="founding-banner reveal">
+        <div class="founding-left">
+          <div class="founding-eyebrow">Founding Membership</div>
+          <div class="founding-headline">We're in v0.5. Join now — use everything free until v1.</div>
+          <div class="founding-sub">Pick the tier that matches how you work. All features unlocked, no credit card, free
+            for 6 months. When v1 launches, you choose whether to continue.</div>
+        </div>
+        <div class="founding-right">
+          <div class="founding-slots"><strong>200</strong> founding spots available</div>
+          <a href="https://run.mainthread.app?referrer=website&ref=founding" class="btn-primary"
+            style="white-space:nowrap;">Claim your spot →</a>
+        </div>
+      </div>
+
       <div class="plans-header reveal">
-        <div class="section-label" style="margin-bottom:16px;">Pricing</div>
+        <div class="section-label" style="margin-bottom:16px;">What you're getting free</div>
         <div class="plans-header-row">
-          <h2>Pick your level of support.</h2>
+          <h2>Choose your level of support.</h2>
           <div class="billing-toggle" id="billingToggle">
             <button type="button" class="toggle-opt active" data-billing="monthly" aria-pressed="true">Monthly</button>
             <button type="button" class="toggle-opt" data-billing="annual" aria-pressed="false">Annual <span
@@ -1761,7 +2255,8 @@
             <li>Delegate tasks to contacts</li>
             <li>Weekly completed tasks email</li>
           </ul>
-          <a href="https://run.mainthread.app?referrer=website" class="plan-btn">Start free trial</a>
+          <a href="https://run.mainthread.app?referrer=website&ref=founding" class="plan-btn">Claim founding membership
+            →</a>
         </div>
         <div class="plan featured">
           <div class="plan-popular">Most popular</div>
@@ -1780,7 +2275,8 @@
             <li>Human-in-the-loop approvals</li>
             <li>Instant priority recalculation</li>
           </ul>
-          <a href="https://run.mainthread.app?referrer=website" class="plan-btn">Start free trial</a>
+          <a href="https://run.mainthread.app?referrer=website&ref=founding" class="plan-btn">Claim founding membership
+            →</a>
         </div>
         <div class="plan">
           <div class="plan-name">Autopilot</div>
@@ -1798,10 +2294,12 @@
             <li>Unlimited agent executions</li>
             <li>Concierge-written weekly narrative</li>
           </ul>
-          <a href="https://run.mainthread.app?referrer=website" class="plan-btn">Start free trial</a>
+          <a href="https://run.mainthread.app?referrer=website&ref=founding" class="plan-btn">Claim founding membership
+            →</a>
         </div>
       </div>
-      <p class="plans-footnote">14-day free trial on all plans &nbsp;·&nbsp; No credit card required</p>
+      <p class="plans-footnote">Founding membership — full access, free for 6 months &nbsp;·&nbsp; No credit card
+        required &nbsp;·&nbsp; After v1, choose the plan that fits</p>
     </div>
   </section>
 
@@ -1855,11 +2353,11 @@
 
 
   <div class="container">
-    <h2 class="cta-h reveal">Ready to stop juggling?</h2>
-    <p class="cta-sub reveal d1">14-day free trial. No credit card required.</p>
+    <h2 class="cta-h reveal">Be part of what v1 becomes.</h2>
+    <p class="cta-sub reveal d1">200 founding spots. Free for 6 months. No credit card required.</p>
     <div class="cta-actions reveal d2">
-      <a href="https://run.mainthread.app?referrer=website" class="btn-secondary">Start with Focus</a>
-      <a href="https://run.mainthread.app?referrer=website" class="btn-primary">Start with Autopilot →</a>
+      <a href="https://run.mainthread.app?referrer=website&ref=founding" class="btn-secondary">Join with Focus</a>
+      <a href="https://run.mainthread.app?referrer=website&ref=founding" class="btn-primary">Join with Autopilot →</a>
     </div>
   </div>
   </section>
@@ -1867,10 +2365,10 @@
   <footer role="contentinfo">
     <div class="footer-left">
       <div class="footer-logo">mainthread © 2026</div>
-      <!-- <div class="footer-legal">
+      <div class="footer-legal">
         <a href="/privacy">Privacy Policy</a>
         <a href="/terms">Terms of Service</a>
-      </div> -->
+      </div>
     </div>
     <div class="footer-links">
       <a href="https://www.linkedin.com/company/mainthread">LinkedIn</a>
@@ -1880,45 +2378,30 @@
 
   <script>
     const nav = document.getElementById('nav');
-    const revealEls = document.querySelectorAll('.reveal');
-    const toggleButtons = document.querySelectorAll('.toggle-opt');
-    const planAmounts = document.querySelectorAll('.plan-amount');
-    const grid = document.querySelector('.plans-grid');
-
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('in');
-        observer.unobserve(entry.target);
-      });
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); }, { passive: true });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    revealEls.forEach((el) => observer.observe(el));
-
+    const grid = document.querySelector('.plans-grid');
     grid.classList.add('billing-monthly');
-    toggleButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        toggleButtons.forEach((toggle) => {
-          toggle.classList.remove('active');
-          toggle.setAttribute('aria-pressed', 'false');
+    document.querySelectorAll('.toggle-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.toggle-opt').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
         });
-
-        button.classList.add('active');
-        button.setAttribute('aria-pressed', 'true');
-
-        const billing = button.dataset.billing;
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        const billing = btn.dataset.billing;
         grid.classList.toggle('billing-annual', billing === 'annual');
         grid.classList.toggle('billing-monthly', billing === 'monthly');
-
-        planAmounts.forEach((amount) => {
-          amount.style.opacity = '0';
-          window.setTimeout(() => {
-            amount.textContent = billing === 'annual' ? amount.dataset.annual : amount.dataset.monthly;
-            amount.style.opacity = '1';
+        document.querySelectorAll('.plan-amount').forEach(el => {
+          el.style.opacity = '0';
+          setTimeout(() => {
+            el.textContent = billing === 'annual' ? el.dataset.annual : el.dataset.monthly;
+            el.style.opacity = '1';
           }, 150);
         });
       });
