@@ -409,11 +409,25 @@
       padding: 52px 0;
     }
 
+    .strip + .strip {
+      border-top: 1px solid var(--ghost);
+    }
+
     .strip .container {
       display: grid;
       grid-template-columns: 110px 1fr;
       gap: 72px;
       align-items: center;
+    }
+
+    .strip.strip-why {
+      padding: 56px 0 88px;
+      background: var(--surface);
+      border-top: 1px solid var(--ghost);
+    }
+
+    .strip.strip-why .container {
+      align-items: flex-start;
     }
 
     .strip-label {
@@ -436,6 +450,106 @@
 
     .strip-text strong {
       font-weight: 400;
+    }
+
+    /* WHY — narrated transcript (karaoke) */
+    .strip-why-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 28px;
+    }
+
+    .solution-tell {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 8px 20px;
+      border: 1px solid var(--ghost-em);
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .solution-tell:hover {
+      border-color: rgba(123, 175, 110, 0.32);
+      background: rgba(123, 175, 110, 0.06);
+    }
+
+    .solution-tell.is-playing {
+      border-color: rgba(123, 175, 110, 0.32);
+      background: rgba(123, 175, 110, 0.06);
+    }
+
+    .solution-tell-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .solution-tell-icon svg {
+      display: block;
+    }
+
+    .solution-tell .icon-pause {
+      display: none;
+    }
+
+    .solution-tell.is-playing .icon-play {
+      display: none;
+    }
+
+    .solution-tell.is-playing .icon-pause {
+      display: block;
+    }
+
+    .solution-karaoke {
+      font-family: var(--serif);
+      font-size: clamp(16px, 1.85vw, 20px);
+      font-weight: 300;
+      line-height: 1.55;
+      max-width: 100%;
+      column-count: 2;
+      column-gap: clamp(28px, 4vw, 56px);
+    }
+
+    @media (max-width: 640px) {
+      .solution-karaoke {
+        column-count: 1;
+      }
+    }
+
+    .karaoke-cue {
+      margin: 0 0 0.85em;
+      color: rgba(165, 162, 160, 0.42);
+      transition: color 0.3s ease;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      scroll-margin-block-start: 96px;
+    }
+
+    .karaoke-cue.is-past {
+      color: rgba(232, 230, 227, 0.38);
+    }
+
+    .karaoke-cue.is-active {
+      color: var(--on-surface);
+    }
+
+    .solution-karaoke-error {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--on-surface-variant);
+      max-width: 520px;
     }
 
     /* SYSTEM */
@@ -1880,6 +1994,7 @@
   <nav id="nav" role="navigation" aria-label="Main navigation">
     <a href="/" class="nav-logo">main<span>thread</span></a>
     <div class="nav-right">
+      <a href="#why" class="nav-link">Why</a>
       <a href="#system" class="nav-link">How it works</a>
       <a href="#agents" class="nav-link">Agents</a>
       <a href="#pricing" class="nav-link">Pricing</a>
@@ -1908,10 +2023,33 @@
     </div>
   </section>
 
-  <div class="strip">
+  <div class="strip strip-why" id="why" aria-label="Why">
     <div class="container">
-      <div class="strip-label">The problem</div>
-      <p class="strip-text">
+      <div class="strip-label reveal">Why?</div>
+      <div class="strip-why-content">
+        <div class="strip-why-toolbar">
+          <button type="button" class="solution-tell reveal d1" id="solution-tell" aria-label="Play narration">
+            <span class="solution-tell-icon" aria-hidden="true">
+              <svg class="icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7L8 5z" />
+              </svg>
+              <svg class="icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19h4V5H6v14zm8 0h4V5h-4v14z" />
+              </svg>
+            </span>
+            <span class="solution-tell-label">Tell me</span>
+          </button>
+        </div>
+        <audio id="solution-audio" src="script.mp3" preload="metadata" playsinline></audio>
+        <div id="solution-karaoke" class="solution-karaoke reveal d2"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip" id="problem" aria-label="The problem">
+    <div class="container">
+      <div class="strip-label reveal">The problem</div>
+      <p class="strip-text reveal d1">
         Your work lives in twelve tabs. Your family runs on WhatsApp. Your household exists somewhere in your inbox.
         <strong>You're one person. Your tools aren't.</strong>
       </p>
@@ -2382,6 +2520,118 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    (function solutionKaraoke() {
+      const audio = document.getElementById('solution-audio');
+      const btn = document.getElementById('solution-tell');
+      const root = document.getElementById('solution-karaoke');
+      if (!audio || !btn || !root) return;
+
+      function parseTs(s) {
+        const m = String(s).trim().match(/^(\d{2}):(\d{2}):(\d{2})[.,](\d{3})$/);
+        if (!m) return 0;
+        return (+m[1]) * 3600 + (+m[2]) * 60 + (+m[3]) + (+m[4]) / 1000;
+      }
+
+      function parseSrt(text) {
+        const cues = [];
+        const blocks = text.replace(/\r\n/g, '\n').trim().split(/\n\s*\n/);
+        for (const block of blocks) {
+          const lines = block.split('\n').map(l => l.trimEnd());
+          if (!lines.length) continue;
+          let i = 0;
+          if (/^\d+$/.test(lines[0].trim())) i = 1;
+          if (i >= lines.length) continue;
+          const timeLine = lines[i];
+          const m = timeLine.match(/(\d{2}:\d{2}:\d{2}[.,]\d{3})\s*-{2}>\s*(\d{2}:\d{2}:\d{2}[.,]\d{3})/);
+          if (!m) continue;
+          const start = parseTs(m[1]);
+          const end = parseTs(m[2]);
+          const textLines = lines.slice(i + 1).filter(Boolean);
+          if (!textLines.length) continue;
+          const body = textLines.map(l => l.trim()).join(' ').replace(/\s+/g, ' ').trim();
+          cues.push({ start, end, text: body });
+        }
+        return cues;
+      }
+
+      const btnLabel = btn.querySelector('.solution-tell-label');
+      let cues = [];
+      let cueEls = [];
+      let lastScrolledActiveIdx = -1;
+
+      function renderCues(list) {
+        root.textContent = '';
+        cueEls = list.map(cue => {
+          const p = document.createElement('p');
+          p.className = 'karaoke-cue';
+          p.textContent = cue.text;
+          root.appendChild(p);
+          return p;
+        });
+      }
+
+      function updateHighlight() {
+        const t = audio.currentTime;
+        let activeIdx = -1;
+        for (let i = 0; i < cueEls.length; i++) {
+          const el = cueEls[i];
+          const c = cues[i];
+          el.classList.remove('is-active', 'is-past');
+          if (t >= c.end) el.classList.add('is-past');
+          else if (t >= c.start) {
+            el.classList.add('is-active');
+            activeIdx = i;
+          }
+        }
+        if (!audio.paused && activeIdx !== -1 && activeIdx !== lastScrolledActiveIdx) {
+          lastScrolledActiveIdx = activeIdx;
+          cueEls[activeIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+        }
+        if (activeIdx === -1) lastScrolledActiveIdx = -1;
+      }
+
+      fetch('script.srt')
+        .then(r => {
+          if (!r.ok) throw new Error('fetch');
+          return r.text();
+        })
+        .then(text => {
+          cues = parseSrt(text);
+          if (!cues.length) throw new Error('empty');
+          renderCues(cues);
+          audio.addEventListener('timeupdate', updateHighlight);
+          audio.addEventListener('seeked', updateHighlight);
+          updateHighlight();
+        })
+        .catch(() => {
+          root.innerHTML = '<p class="solution-karaoke-error">Narration text could not be loaded.</p>';
+        });
+
+      btn.addEventListener('click', () => {
+        if (audio.paused) audio.play().catch(() => {});
+        else audio.pause();
+      });
+
+      audio.addEventListener('play', () => {
+        btn.classList.add('is-playing');
+        if (btnLabel) btnLabel.textContent = 'Pause';
+        btn.setAttribute('aria-label', 'Pause narration');
+      });
+      audio.addEventListener('pause', () => {
+        btn.classList.remove('is-playing');
+        if (btnLabel) btnLabel.textContent = 'Tell me';
+        btn.setAttribute('aria-label', 'Play narration');
+        updateHighlight();
+      });
+      audio.addEventListener('ended', () => {
+        btn.classList.remove('is-playing');
+        if (btnLabel) btnLabel.textContent = 'Tell me';
+        btn.setAttribute('aria-label', 'Play narration');
+        lastScrolledActiveIdx = -1;
+        updateHighlight();
+      });
+    })();
 
     const grid = document.querySelector('.plans-grid');
     grid.classList.add('billing-monthly');
