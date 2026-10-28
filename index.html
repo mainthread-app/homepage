@@ -150,6 +150,8 @@
   .h-bar.dim { opacity: 0.38; }
   .h-bar .lbl { padding: 0 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .h-bar.narrow .lbl { position: absolute; left: 100%; margin-left: 8px; padding: 0; overflow: visible; color: var(--fg-2); font-weight: 500; }
+  .h-bar.on { z-index: 5; }
+  .h-bar.narrow.on .lbl { background: var(--panel-hi); color: var(--fg); border-radius: 6px; padding: 2px 8px; margin-left: 6px; }
   .h-bar .deleg { position: absolute; right: 4px; top: 3px; width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--fg-2); color: var(--fg); font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; background: var(--panel); }
   .preview-note { margin-top: 14px; text-align: center; font-size: 14px; color: var(--fg-2); }
 
@@ -229,7 +231,7 @@
 </header>
 
 <section class="hero wrap">
-  <div class="hero-eyebrow"><span class="dot"></span><span>The productivity platform for high achievers</span></div>
+  <div class="hero-eyebrow"><span class="dot"></span><span>The productivity platform for high performers</span></div>
   <h1>Productivity isn't doing more.<br><em>It's the whole picture, and the next move.</em></h1>
   <p class="hero-sub">Work, family and household on one timeline, with a daily queue sized to the hours you actually have. Built for one person: you.</p>
   <div class="hero-actions">
