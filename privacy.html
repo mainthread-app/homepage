@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy policy · Mainthread</title>
+<meta name="description" content="How Mainthread collects, uses and protects your data, including what is shared with AI providers.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://mainthread.app/privacy.html">
+
+<link rel="icon" href="https://mainthread.app/img/favicon.ico" sizes="256x256" type="image/x-icon">
+<link rel="apple-touch-icon" href="https://mainthread.app/img/icon_x180.png">
+<meta name="theme-color" content="#0f1110">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+  :root {
+    --bg: oklch(17.76% 0.005 165); --panel: oklch(21.2% 0.005 165); --panel-hi: oklch(27.28% 0.005 165);
+    --fg: oklch(92.8% 0.005 165); --fg-2: oklch(92.8% 0.005 165 / 0.78); --fg-3: oklch(92.8% 0.005 165 / 0.6);
+    --grid: oklch(92.8% 0.005 165 / 0.07); --grid-strong: oklch(92.8% 0.005 165 / 0.15); --control: oklch(92.8% 0.005 165 / 0.42);
+    --primary: oklch(62% 0.09 152); --primary-soft: oklch(62% 0.09 152 / 0.16);
+    --serif: 'Newsreader', Georgia, serif;
+    --sans: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: oklch(96.15% 0.005 165); --panel: oklch(100% 0 90); --panel-hi: oklch(92.27% 0.005 165);
+      --fg: oklch(23.19% 0.005 165); --fg-2: oklch(23.19% 0.005 165 / 0.78); --fg-3: oklch(23.19% 0.005 165 / 0.62);
+      --grid: oklch(23.19% 0.005 165 / 0.07); --grid-strong: oklch(23.19% 0.005 165 / 0.15); --control: oklch(23.19% 0.005 165 / 0.52);
+      --primary: oklch(42% 0.09 154); --primary-soft: oklch(42% 0.09 154 / 0.16);
+    }
+  }
+
+  body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-2); }
+  h1, h2, h3, p, ul { margin: 0; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 9.6px; font-weight: 600; font-size: 15px; text-decoration: none; background: transparent; color: var(--fg); border: 1px solid var(--control); }
+  .btn:hover { background: var(--panel-hi); }
+  .link { display: inline-flex; align-items: center; min-height: 44px; color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+
+  header.top { padding-top: 16px; padding-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .logo { font-family: var(--serif); font-size: 24px; font-weight: 500; text-decoration: none; }
+  header nav { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; font-size: 15px; font-weight: 500; }
+  header nav a { text-decoration: none; }
+  header nav a:not(.btn) { color: var(--fg-2); display: inline-flex; align-items: center; min-height: 44px; }
+  header nav a:not(.btn):hover { text-decoration: underline; }
+
+  main { max-width: 760px; padding-top: 48px; padding-bottom: 80px; }
+  main h1 { margin-top: 12px; font-size: clamp(36px, 5vw, 56px); line-height: 1.08; letter-spacing: -0.015em; }
+  .updated { margin-top: 16px; font-size: 14px; color: var(--fg-3); }
+
+  .summary { margin-top: 32px; padding: 24px 28px; background: var(--primary-soft); border: 1px solid var(--grid-strong); border-radius: 14.4px; }
+  .summary h2 { font-size: 26px; line-height: 1.2; margin-bottom: 12px; }
+  .summary ul { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+
+  section { margin-top: 48px; }
+  section h2 { font-size: clamp(26px, 3.2vw, 34px); line-height: 1.15; margin-bottom: 14px; }
+  section p + p, section p + ul, section ul + p { margin-top: 14px; }
+  section ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  section p, section li { color: var(--fg-2); }
+
+  .table-wrap { margin-top: 16px; overflow-x: auto; border: 1px solid var(--grid-strong); border-radius: 14.4px; background: var(--panel); }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.45; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--grid); }
+  tr:last-child td { border-bottom: 0; }
+  th { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-2); }
+  td { color: var(--fg-2); }
+  td:first-child { color: var(--fg); font-weight: 600; white-space: nowrap; }
+
+  footer { padding-top: 12px; padding-bottom: 12px; border-top: 1px solid var(--grid); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 14px; color: var(--fg-2); }
+  footer .brand { font-family: var(--serif); font-size: 18px; color: var(--fg); }
+  footer nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7FD34609P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y7FD34609P');
+</script>
+</head>
+<body>
+
+<header class="top wrap">
+  <a href="/" class="logo">mainthread</a>
+  <nav>
+    <a href="/#how">How it works</a>
+    <a href="https://run.mainthread.app?referrer=website" class="btn">Log in</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <span class="eyebrow">Legal</span>
+  <h1>Privacy policy</h1>
+  <p class="updated">Last updated 30 October 2026</p>
+
+  <div class="summary">
+    <h2>The short version</h2>
+    <ul>
+      <li>We store the planning data you enter, such as swimlanes, threads, tasks, contacts, files and forwarded emails, so the app can work for you.</li>
+      <li>To prioritise your tasks, we send a small set of fields to an AI provider. For optional context enrichment, we send a similar set to a second one. Neither uses your data to train its models.</li>
+      <li>We do not sell your personal data.</li>
+      <li>Claude or another assistant can see your data only if you connect it yourself.</li>
+      <li>Ask us anything, or ask us to delete your data, at <a href="mailto:hello@mainthread.app">hello@mainthread.app</a>.</li>
+    </ul>
+  </div>
+
+  <section>
+    <h2>Who we are</h2>
+    <p>Mainthread is a personal planning app and website at mainthread.app. We operate it under the name Mainthread. This policy covers the website and the Mainthread app (v1). For any question about it, write to <a href="mailto:hello@mainthread.app">hello@mainthread.app</a>.</p>
+  </section>
+
+  <section>
+    <h2>What we collect</h2>
+    <ul>
+      <li><strong>Account details.</strong> Your name and email address, and your time zone and country. Sign-in is handled by our authentication provider, WorkOS.</li>
+      <li><strong>Planning data.</strong> The swimlanes, threads and tasks you create, including titles, descriptions, deadlines and effort estimates, and any information you add about yourself.</li>
+      <li><strong>Contacts.</strong> People you add, such as a name or phone number. Please add only information you are entitled to share.</li>
+      <li><strong>Files and forwarded emails.</strong> Attachments you upload and emails you forward to the app's intake address.</li>
+      <li><strong>Website visits.</strong> Standard usage data, collected through Google Analytics on this website (see Cookies and analytics below).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How we use it</h2>
+    <ul>
+      <li>To run the app: store your data, build your daily shortlist and send you what you ask for.</li>
+      <li>To prioritise your tasks and, optionally, enrich them with context using AI (see next section).</li>
+      <li>To keep the service secure, fix problems and answer your messages.</li>
+      <li>To understand how the website is used and improve it.</li>
+    </ul>
+    <p>We rely on the need to provide the service you signed up for, on our legitimate interest in running and securing it, and on your consent where the law requires it.</p>
+  </section>
+
+  <section>
+    <h2>AI providers</h2>
+    <p>We use two AI providers to process a limited set of fields. Both act on our instructions, and neither uses this data to train its models.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Provider</th><th>Purpose</th><th>Fields sent</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TypeSafe AI (Jev models)</td>
+            <td>Task prioritisation. Runs for your tasks as part of the priority engine.</td>
+            <td>Task title, task description, your country, the information you provided about yourself, thread title, swimlane title.</td>
+          </tr>
+          <tr>
+            <td>Anthropic</td>
+            <td>Context enrichment. Optional and not always used.</td>
+            <td>Task title, task description, deadline, your country, the information you provided about yourself.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Your files, contacts and forwarded emails are not sent to these providers.</p>
+  </section>
+
+  <section>
+    <h2>Connecting an assistant (MCP)</h2>
+    <p>Mainthread can be connected to an AI assistant such as Claude through MCP. This is opt-in. Nothing is shared with an assistant unless you connect it, and you can disconnect it at any time. Once connected, the assistant can read and act on your data as permitted by the connection, and its handling of that data is governed by its own provider's terms and privacy policy.</p>
+  </section>
+
+  <section>
+    <h2>Who else handles your data</h2>
+    <p>We use a small number of service providers to operate the app:</p>
+    <ul>
+      <li><strong>WorkOS</strong> for sign-in and authentication.</li>
+      <li><strong>Render</strong> for hosting, the database and file storage.</li>
+      <li><strong>An inbound email service</strong> that receives emails you forward to the app.</li>
+      <li><strong>TypeSafe AI and Anthropic</strong> as described above.</li>
+      <li><strong>Google Analytics</strong> on this website.</li>
+    </ul>
+    <p>They process data only to provide their service to us. We do not sell your personal data and we do not share it for advertising.</p>
+  </section>
+
+  <section>
+    <h2>Cookies and analytics</h2>
+    <p>This website uses Google Analytics to count visits and see which pages are used. It sets cookies and sends usage data to Google. Where the law requires your consent for this, we will ask for it. You can also block these cookies in your browser settings or with a tracking-protection extension. The app itself does not currently use analytics.</p>
+  </section>
+
+  <section>
+    <h2>How long we keep it</h2>
+    <p>We keep your data while your account is active. If you delete your account, we delete your data, except where we must keep something to meet a legal obligation. Backups are overwritten on their regular cycle.</p>
+  </section>
+
+  <section>
+    <h2>Your rights</h2>
+    <p>Depending on where you live, you may have the right to access your data, correct it, export it, delete it, object to or restrict how we use it, and withdraw consent. Email <a href="mailto:hello@mainthread.app">hello@mainthread.app</a> and we will reply within 30 days. You can also complain to your local data protection authority.</p>
+  </section>
+
+  <section>
+    <h2>Security</h2>
+    <p>Data is encrypted in transit, and access to production systems is limited to the people who run the service. No system is perfectly secure, so we cannot guarantee absolute security.</p>
+  </section>
+
+  <section>
+    <h2>Children</h2>
+    <p>Mainthread is not intended for children under 16, and we do not knowingly collect their data. If you believe a child has given us data, write to us and we will delete it.</p>
+  </section>
+
+  <section>
+    <h2>Changes to this policy</h2>
+    <p>If we change this policy in a meaningful way, we will update the date above and, where appropriate, tell you in the app or by email.</p>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span class="brand">mainthread © 2026</span>
+  <nav><a class="link" href="/privacy.html">Privacy</a><a class="link" href="mailto:hello@mainthread.app">Contact</a><a class="link" href="https://run.mainthread.app?referrer=website">Log in</a></nav>
+</footer>
+
+</body>
+</html>

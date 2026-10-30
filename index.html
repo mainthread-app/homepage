@@ -204,6 +204,15 @@
   .final p { margin: 20px auto 0; max-width: 520px; font-size: 19px; color: var(--fg-2); }
   .final .btn { margin-top: 32px; }
 
+  .btn { cursor: pointer; font-family: inherit; }
+  .btn .demo-len { margin-left: 8px; font-size: 13px; font-weight: 500; color: var(--fg-2); }
+  .demo-dialog { width: min(1100px, calc(100vw - 32px)); max-width: none; padding: 0; border: 1px solid var(--grid-strong); border-radius: 14.4px; background: var(--panel); color: var(--fg); overflow: visible; }
+  .demo-dialog::backdrop { background: oklch(10% 0.005 165 / 0.8); }
+  .demo-dialog video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 14.4px; background: #000; }
+  .demo-close { position: absolute; top: -48px; right: 0; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--control); background: var(--panel); color: var(--fg); font-size: 22px; line-height: 1; cursor: pointer; }
+  .demo-close:hover { background: var(--panel-hi); }
+  @media (max-width: 600px) { .demo-close { top: -52px; } }
+
   footer { padding-top: 12px; padding-bottom: 12px; border-top: 1px solid var(--grid); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 14px; color: var(--fg-2); }
   footer .brand { font-family: var(--serif); font-size: 18px; color: var(--fg); }
   footer nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
@@ -236,6 +245,7 @@
   <p class="hero-sub">Work, family and household on one timeline, with a daily queue sized to the hours you actually have. Built for one person: you.</p>
   <div class="hero-actions">
     <a href="https://run.mainthread.app?referrer=website" class="btn btn-primary">Start free</a>
+    <button type="button" class="btn btn-ghost" id="demo-open" aria-haspopup="dialog"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="margin-right:8px"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg>Watch the demo<span class="demo-len">83 sec</span></button>
     <span>Free while we build v1. No credit card.</span>
   </div>
 </section>
@@ -386,10 +396,17 @@
 
 <footer class="wrap">
   <span class="brand">mainthread © 2026</span>
-  <nav><a class="link" href="mailto:hello@mainthread.app">Contact</a><a class="link" href="https://run.mainthread.app?referrer=website">Log in</a></nav>
+  <nav><a class="link" href="/privacy.html">Privacy</a><a class="link" href="mailto:hello@mainthread.app">Contact</a><a class="link" href="https://run.mainthread.app?referrer=website">Log in</a></nav>
 </footer>
 
 </div>
+
+<dialog id="demo-dialog" class="demo-dialog" aria-label="Mainthread product demo">
+  <button type="button" class="demo-close" id="demo-close" aria-label="Close demo">&times;</button>
+  <video id="demo-video" controls playsinline preload="none" poster="/media/demo-poster.jpg">
+    <source src="/media/mainthread-demo.mp4" type="video/mp4">
+  </video>
+</dialog>
 
 <script>
 (function () {
@@ -472,6 +489,23 @@
       p[1].classList.toggle('on', hover === p[0]);
       p[1].classList.toggle('dim', !!hover && hover !== p[0]);
     });
+  }
+
+  var demoBtn = document.getElementById('demo-open');
+  var demoDlg = document.getElementById('demo-dialog');
+  var demoVid = document.getElementById('demo-video');
+  if (demoBtn && demoDlg && demoDlg.showModal) {
+    demoBtn.addEventListener('click', function () {
+      demoDlg.showModal();
+      demoVid.play().catch(function () {});
+      if (window.gtag) gtag('event', 'demo_open');
+    });
+    document.getElementById('demo-close').addEventListener('click', function () { demoDlg.close(); });
+    demoDlg.addEventListener('click', function (e) { if (e.target === demoDlg) demoDlg.close(); });
+    demoDlg.addEventListener('close', function () { demoVid.pause(); });
+    demoVid.addEventListener('play', function () { if (window.gtag) gtag('event', 'demo_play'); }, { once: true });
+  } else if (demoBtn) {
+    demoBtn.addEventListener('click', function () { window.open('/media/mainthread-demo.mp4', '_blank'); });
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
